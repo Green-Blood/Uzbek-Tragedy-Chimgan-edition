@@ -6,19 +6,54 @@ position: 0,0
 ---
 
 // sets background image to sprite called "bg_office"
-<<Scene @ bg_office>>
+<<Scene @ bg_chimgan1>>
 
-// creates a new actor named "Eve" using a sprite called "cool-girl"
-<<Act @ Eve, cool-girl>>
-Eve: I'm in an office.
-Eve: I wonder what I should do now?
+
 
 // WRITE YOUR STORY HERE!
 
-Eve: 
+"All names and events in the game are fictional, any coincidence with real people and events is pure coincidence. "
 
+"This happened to my best friend, when we were studying in our INPA University in Tashkent"
+"Здравствуйте я вам расскажу одну историю, про одного вполне необычного человека."
+"Все начиналось так."
+<<Act @ Morphius, cool-girl, right, center, blue>>
+Morphius: "Хей,  чем ты занят вставай, горы уже видны!"
+"Я еле еле открыл глаза, после бессонной ночи за книжками по лекарственным травам, я чувствовал себя мягко говоря, скверно"
+"Меня зовут August, я студент 3 курса медицинского, сейчас мы едем в горы для изучения, лекарственных трав, в их естественной  области произрастания"
+<<Act @ August, cool-girl, left, center, green>>
+August: "Да, да, встаю уже"
+"Это мой друг Morphius, мы с ним ещё с первого курса вместе учимся"
+<<Hide @ August>>
+<<Hide @ Morphius>>
+<<Act @ Rene, cool-girl, right, center, #FFC0CB>>
+Rene: Ребят вы видите горы?
+"В наш разговор влезла, наша мисс Актив универа Rene"
+"Она с самого начала учебы, была самой активной девушкой универа за которой никто не мог угнаться, так ещё и умной и красивой"
+Morphius: Дааа, Ураа
+<<Hide @ Rene>>
 
-
+Morphius: Zod, ты тоже посмотри в окно
+<<Act @ Zod, cool-girl, left, center, black>>
+Zod: Сейчас
+"Zod, был одним из умников универа, он всегда набирал первое место в тестах."
+"И так мы четыре друга, дружно ехали в горы"
+//Звук неисправностей
+Rene: Что? Что случилось?
+//Звук взрыва
+//Звук падения и всякого такого
+<<Fade @ white, 1.0, 1.0, 1.0>>
+"Я, жив?"
+<<PlayAudio @ ambient_birds, 0.5>>
+"Я открыл глаза, в неизвестном мне месте"
+<<Scene @ bg_chimgan2>>
+<<FadeIn @ 1.0>>
+"После взрыва, я понятие не имею куда меня занесло..."
+"Агх, нога болит, похоже её задело во время падения"
+August: Алоо, тут кто-то есть?
+"И ничего в ответ"
+August: Помогите, тут раненный
+"И снова тишина"
 
 
 // DON'T DELETE THE "==="
