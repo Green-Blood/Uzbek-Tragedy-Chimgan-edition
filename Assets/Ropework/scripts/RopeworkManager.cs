@@ -5,6 +5,10 @@ using System.Text;
 using System.IO;
 using System.Collections.Generic;
 using Yarn.Unity;
+using Mono.Data.Sqlite;
+using System;
+using System.Data;	
+
 
 namespace Ropework {
     public class RopeworkManager : MonoBehaviour
@@ -35,6 +39,14 @@ namespace Ropework {
 		[HideInInspector] public Dictionary<string, Color> actorColors = new Dictionary<string, Color>(); // tracks names to colors... but this is just data, the DialogueUI script has to actually do something with the color
 
 		string[] separ = new string[] {","}; // stores the separator value, usually a comma
+		
+		//start of DB variables
+		private string conn, sqlQuery;
+    	IDbConnection dbconn;
+    	IDbCommand dbcmd;
+		//end of db variables
+
+
 
 		void Awake () {
 			// always rename this gameObject to "@" so that Yarn commands will work
@@ -42,12 +54,54 @@ namespace Ropework {
 		}
 
 		void Start () {
+			//DB part
+			conn = "URI=file:" + Application.dataPath + "/game.db"; 
+			checking();
+
 			// if enabled, adds all Resources to internal lists / one big pile, so that you can ignore Resource subfolders
 			if ( ignoreResourceSubfolders ) {
 				var allSpritesInResources = Resources.LoadAll<Sprite>("");
 				loadSprites.AddRange( allSpritesInResources );
 				var allAudioInResources = Resources.LoadAll<AudioClip>("");
 				loadAudio.AddRange( allAudioInResources );
+			}
+		}
+
+		//DB:
+		private void checking()
+		{
+			using (dbconn = new SqliteConnection(conn))
+			{
+
+				dbconn.Open(); //Open connection to the database.
+				// dbcmd = dbconn.CreateCommand();
+				dbconn.Close();
+			}
+		}
+
+		private void insertvalue(int id, string name)
+		{
+			using (dbconn = new SqliteConnection(conn))
+			{
+				dbconn.Open(); //Open connection to the database.
+				dbcmd = dbconn.CreateCommand();
+				sqlQuery = string.Format("insert into characters (ID, Name) values (\"{0}\",\"{1}\")",id,name);// table name
+				dbcmd.CommandText = sqlQuery;
+				dbcmd.ExecuteScalar();
+				dbconn.Close();
+			}
+		}
+		
+		private void Deletvalue(int id)
+		{
+			using (dbconn = new SqliteConnection(conn))
+			{
+				dbconn.Open(); //Open connection to the database.
+				dbcmd = dbconn.CreateCommand();
+				sqlQuery = string.Format("Delete from characters WHERE ID=\"{0}\"", id);// table name
+				dbcmd.CommandText = sqlQuery;
+				dbcmd.ExecuteScalar();
+				dbconn.Close();
 			}
 		}
 
