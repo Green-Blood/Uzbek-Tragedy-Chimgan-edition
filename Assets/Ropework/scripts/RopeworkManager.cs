@@ -92,7 +92,7 @@ namespace Ropework {
 			}
 		}
 		
-		private void Deletvalue(int id)
+		private void DeleteValue(int id)
 		{
 			using (dbconn = new SqliteConnection(conn))
 			{
@@ -115,6 +115,9 @@ namespace Ropework {
 
 		// SetActor(actorName,spriteName,positionX,positionY,color)
 		// main function for moving / adjusting characters
+	
+		
+
 		[YarnCommand("Act")]
 		public void SetActor(params string[] parameters) {
 			// get parameter data
