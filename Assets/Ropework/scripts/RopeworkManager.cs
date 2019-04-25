@@ -55,8 +55,8 @@ namespace Ropework {
 
 		void Start () {
 			//DB part
-			conn = "URI=file:" + Application.dataPath + "/game.db"; 
-			checking();
+			conn = "URI=file:" + Application.dataPath + "/gameNEW.db"; 
+			getDDL();
 
 			// if enabled, adds all Resources to internal lists / one big pile, so that you can ignore Resource subfolders
 			if ( ignoreResourceSubfolders ) {
@@ -68,16 +68,71 @@ namespace Ropework {
 		}
 
 		//DB:
+		private void getDDL()
+		{
+			using (dbconn = new SqliteConnection(conn))
+			{
+				dbconn.Open(); //Open connection to the database.
+				dbcmd = dbconn.CreateCommand();
+				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Flags(Name VARCHAR(20) NOT NULL,Count INTEGER NULL, PRIMARY KEY (Name));");// table name
+				dbcmd.CommandText = sqlQuery;
+				dbcmd.ExecuteScalar();
+
+				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Endings(E_ID INTEGER NOT NULL,Happened INTEGER NULL, PRIMARY KEY (E_ID));");// table name
+				dbcmd.CommandText = sqlQuery;
+				dbcmd.ExecuteScalar();
+
+				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS GameResult(Name VARCHAR(20) NOT NULL, E_ID INTEGER NOT NULL, Flag_Sum INTEGER NULL, PRIMARY KEY (Name,E_ID), FOREIGN KEY (Name) REFERENCES Flags (Name), FOREIGN KEY (E_ID) REFERENCES Endings (E_ID));");// table name
+				dbcmd.CommandText = sqlQuery;
+				dbcmd.ExecuteScalar();
+
+				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Achievements(A_ID INTEGER NOT NULL, AchieveName VARCHAR(20) NULL, Cost INTEGER NULL, Info VARCHAR(20) NULL, Achieved INTEGER NULL, Name VARCHAR(20) NULL, E_ID INTEGER NULL, PRIMARY KEY (A_ID),FOREIGN KEY (Name) REFERENCES Flags (Name),FOREIGN KEY (Name, E_ID) REFERENCES GameResult (Name, E_ID));");// table name
+				dbcmd.CommandText = sqlQuery;
+				dbcmd.ExecuteScalar();
+
+				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Characters( ID INTEGER NOT NULL, Name VARCHAR(20) NULL, PRIMARY KEY (ID));");// table name
+				dbcmd.CommandText = sqlQuery;
+				dbcmd.ExecuteScalar();
+
+				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Images(State_img VARCHAR(20) NOT NULL, NPC_ID INTEGER NOT NULL, PRIMARY KEY (State_img,NPC_ID), FOREIGN KEY (NPC_ID) REFERENCES NPC (NPC_ID));");// table name
+				dbcmd.CommandText = sqlQuery;
+				dbcmd.ExecuteScalar();
+
+				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Items( ID INTEGER NOT NULL, Name VARCHAR(20) NULL, Info VARCHAR(20) NULL, itemType INTEGER NULL, PRIMARY KEY (ID));");// table name
+				dbcmd.CommandText = sqlQuery;
+				dbcmd.ExecuteScalar();
+
+				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Plants (ID INTEGER NOT NULL, Properties VARCHAR(20) NULL, PRIMARY KEY (ID), FOREIGN KEY (ID) REFERENCES Items (ID) );");// table name
+				dbcmd.CommandText = sqlQuery;
+				dbcmd.ExecuteScalar();
+
+				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Objects( ID INTEGER NOT NULL, Properties VARCHAR(20) NULL, TL INTEGER NULL, PRIMARY KEY (ID), FOREIGN KEY (ID) REFERENCES Items (ID) );");// table name
+				dbcmd.CommandText = sqlQuery;
+				dbcmd.ExecuteScalar();
+
+				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Inventory ( I_ID INTEGER NOT NULL, Charge INTEGER NULL, PRIMARY KEY (I_ID), FOREIGN KEY (I_ID) REFERENCES Plants (ID), FOREIGN KEY (I_ID) REFERENCES Objects (ID));");// table name
+				dbcmd.CommandText = sqlQuery;
+				dbcmd.ExecuteScalar();
+
+				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Player ( P_ID INTEGER NOT NULL, Name VARCHAR(20) NOT NULL, Score INTEGER NULL, PRIMARY KEY (P_ID), FOREIGN KEY (P_ID) REFERENCES Characters (ID), FOREIGN KEY (P_ID) REFERENCES Inventory (I_ID), FOREIGN KEY (Name) REFERENCES Flags (Name));");// table name
+				dbcmd.CommandText = sqlQuery;
+				dbcmd.ExecuteScalar();
+				dbconn.Close();
+			}
+		}
+
 		private void checking()
 		{
 			using (dbconn = new SqliteConnection(conn))
 			{
 
-				dbconn.Open(); //Open connection to the database.
-				// dbcmd = dbconn.CreateCommand();
+
+				dbconn.Open(); 
+				// getDDL();
 				dbconn.Close();
 			}
 		}
+
 
 		private void insertvalue(int id, string name)
 		{
@@ -164,7 +219,11 @@ namespace Ropework {
 			actors.Add( actorName, newActor );
 			actorColors.Add( actorName, actorColor );
 		}
-
+		[YarnCommand("DbConnect")]
+		public void DbConnect()
+		{
+			Debug.Log("Kaka");
+		}
 		// SetSprite(spriteName,positionX,positionY)
 		// generic function for sprite drawing
 		[YarnCommand("Show")]

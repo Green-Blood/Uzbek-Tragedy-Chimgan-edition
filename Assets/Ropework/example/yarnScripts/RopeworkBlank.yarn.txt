@@ -13,7 +13,7 @@ position: 0,0
 // WRITE YOUR STORY HERE!
 
 "All names and events in the game are fictional, any coincidence with real people and events is pure coincidence. "
-
+<<DbConnect>>
 "This happened to my best friend, when we were studying in our INPA University in Tashkent"
 "Здравствуйте я вам расскажу одну историю, про одного вполне необычного человека."
 "Все начиналось так."
