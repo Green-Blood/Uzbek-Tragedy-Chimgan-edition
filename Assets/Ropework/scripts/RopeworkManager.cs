@@ -57,6 +57,11 @@ namespace Ropework {
 			//DB part
 			conn = "URI=file:" + Application.dataPath + "/gameNEW.db"; 
 			getDDL();
+			// insertvalue(1,"Bob");
+			// updatevalue("Jack", 1);
+			deletevalue(1);
+
+
 
 			// if enabled, adds all Resources to internal lists / one big pile, so that you can ignore Resource subfolders
 			if ( ignoreResourceSubfolders ) {
@@ -121,18 +126,31 @@ namespace Ropework {
 			}
 		}
 
-		private void checking()
+		// private void checking()
+		// {
+		// 	using (dbconn = new SqliteConnection(conn))
+		// 	{
+
+
+		// 		dbconn.Open(); 
+		// 		// getDDL();
+		// 		dbconn.Close();
+		// 	}
+		// }
+
+		private void updatevalue(string name, int id)
 		{
 			using (dbconn = new SqliteConnection(conn))
 			{
 
-
-				dbconn.Open(); 
-				// getDDL();
+				dbconn.Open(); //Open connection to the database.
+				dbcmd = dbconn.CreateCommand();
+				sqlQuery = string.Format("UPDATE Characters SET Name=\"{0}\" WHERE ID = \"{1}\"", name, id);// table name
+				dbcmd.CommandText = sqlQuery; 
+				dbcmd.ExecuteScalar();
 				dbconn.Close();
 			}
 		}
-
 
 		private void insertvalue(int id, string name)
 		{
@@ -140,20 +158,20 @@ namespace Ropework {
 			{
 				dbconn.Open(); //Open connection to the database.
 				dbcmd = dbconn.CreateCommand();
-				sqlQuery = string.Format("insert into characters (ID, Name) values (\"{0}\",\"{1}\")",id,name);// table name
+				sqlQuery = string.Format("INSERT INTO Characters (ID, Name) values (\"{0}\",\"{1}\")",id,name);// table name
 				dbcmd.CommandText = sqlQuery;
 				dbcmd.ExecuteScalar();
 				dbconn.Close();
 			}
 		}
 		
-		private void DeleteValue(int id)
+		private void deletevalue(int id)
 		{
 			using (dbconn = new SqliteConnection(conn))
 			{
 				dbconn.Open(); //Open connection to the database.
 				dbcmd = dbconn.CreateCommand();
-				sqlQuery = string.Format("Delete from characters WHERE ID=\"{0}\"", id);// table name
+				sqlQuery = string.Format("DELETE FROM Characters WHERE ID=\"{0}\"", id);// table name
 				dbcmd.CommandText = sqlQuery;
 				dbcmd.ExecuteScalar();
 				dbconn.Close();
