@@ -13,56 +13,54 @@ position: 0,0
 // WRITE YOUR STORY HERE!
 
 "All names and events in the game are fictional, any coincidence with real people and events is pure coincidence. "
-<<DbConnect>>
-
-"This happened to my best friend, when we were studying in our INPA University in Tashkent"
-"Здравствуйте я вам расскажу одну историю, про одного вполне необычного человека."
-"Все начиналось так."
+"This happened to my best friend, when we were studying in our INHA University in Tashkent"
+"Hello, I will tell you one story, about one quite unusual person."
+"It all started like this"
 <<Act @ Morphius, boy2, right, 0.40, blue>>
-Morphius: "Хей,  чем ты занят вставай, горы уже видны!"
-"Я еле еле открыл глаза, после бессонной ночи за книжками по лекарственным травам, я чувствовал себя мягко говоря, скверно"
-"Меня зовут August, я студент 3 курса медицинского, сейчас мы едем в горы для изучения, лекарственных трав, в их естественной  области произрастания"
+Morphius: "Hey, what are you doing get up, the mountains are already visible!"
+"I barely barely opened my eyes, after a sleepless night at the books on medicinal herbs, I felt mildly speaking, badly"
+"My name is August, I am a 3rd year medical student, now we are going to the mountains to study medicinal herbs in their natural growing area"
 <<Act @ August, transparet , left, 0.40, green>>
 August: "Да, да, встаю уже"
-"Это мой друг Morphius, мы с ним ещё с первого курса вместе учимся"
+"This is my friend Morphius, we are learning from the first year together"
 <<Hide @ August>>
 <<Hide @ Morphius>>
 <<Act @ Rene, girl, right, 0.40, #FFC0CB>>
-Rene: Ребят вы видите горы?
-"В наш разговор влезла, наша мисс Актив универа Rene"
-"Она с самого начала учебы, была самой активной девушкой универа за которой никто не мог угнаться, так ещё и умной и красивой"
-Morphius: Дааа, Ураа
+Rene: Do you guys see the mountains?
+"In our conversation climbed, our Miss Active Uni Rene"
+"From the very beginning of her studies, she was the most active girl of the uni for whom no one could keep up, so also intelligent and beautiful"
+Morphius: Oh yeah
 <<Hide @ Rene>>
 
-Morphius: Zod, ты тоже посмотри в окно
+Morphius: Zod, look at the window
 <<Act @ Zod, boy1, left, 0.40, black>>
 Zod: Сейчас
-"Zod, был одним из умников универа, он всегда набирал первое место в тестах."
-"И так мы четыре друга, дружно ехали в горы"
+"Zod, was one of the wise guys of uni, he always gained first place in the tests. "
+"And so we are four friends, we went to the mountains together"
 <<Hide @ Zod>>
 //Звук неисправностей
-Rene: Что? Что случилось?
+Rene: What? What happened?
 //Звук взрыва
 {% comment %} Important Bus explosion {% endcomment %}
 //Звук падения и всякого такого
 <<Fade @ white, 1.0, 1.0, 1.0>>
-"Я, жив?"
+"Am..am I alive?"
 <<PlayAudio @ ambient_birds, 0.5>>
-"Я открыл глаза, в неизвестном мне месте"
-<<Scene @ bg_chimgan2>>
+"I opened my eyes in an unknown place"
+<<Scene @ chimgan4>>
 <<FadeIn @ 1.0>>
-"После взрыва, я понятие не имею куда меня занесло..."
-"Агх, нога болит, похоже её задело во время падения"
-August: Алоо, тут кто-то есть?
-"И ничего в ответ"
-August: Помогите, тут раненный
-"И снова тишина"
-August: "Так нужно взять себя в руки, я ведь будущий доктор, я должен всегда сохранять хладнокровие и думать холодной головой"
-August: "В первую очередь проверить рюкзак, со мной ли он?"
-"Я осмотрелся рядом и обнаружил что рюкзак лежал прямо рядом со мной"
-August: "Все отлично рюкзак со мной" 
-[[August: (Попробую-ка я встать)|Try]]
-[[August: (Отдохну-ка ещё немного)|Rest]]
+"After the explosion, I have no idea where I went..."
+"Ah, the leg hurts, it seems it stung during the fall"
+August: Hello, there is someone here?
+"And no-one replies"
+August: Help, here is wounded
+"Silence again"
+August: "So you need to pull myself together, I'm the future doctor, I must always keep cool and think cool head"
+August: "First check the backpack, is it with me?"
+"I looked around and found that the backpack was lying right next to me"
+August: "Everything is fine backpack with me" 
+[[August: (I'll try to get up)|Try]]
+[[August: (Rest a little more)|Rest]]
 ===
 
 title: Try
@@ -70,8 +68,8 @@ tags:
 colorID: 0
 position: 10,0 
 ---
-August: Агх, как же больно, но я смог встать, и даже если немного побаливает я все ещё могу нормально ходить.
-August: Так, давайте осмотримся тогда
+August: Oh, how painful, but I was able to get up, and even if I ached a little, I can still walk normally.
+August: So let's look around then
 [[Continue]]
 ===
 
@@ -80,11 +78,11 @@ tags:
 colorID: 0
 position: 10,0
 ---
-August: Отдохну-ка ещё немного
-"Некоторое время спустя"
-August: Я немного отдохнул, теперь надо бы уже встать и попробовать осмотреться
-August: Агх, больно, но ходить возможно, это хорошо
-August: Давай-ка осмотрусь 
+August: Rest a little more
+"A little while later"
+August: I rested a bit, now I should get up and try to look around
+August: Agh, it hurts, but maybe walking is good
+August: Let's look around
 [[Continue]]
 ===
 
@@ -94,9 +92,10 @@ colorID: 0
 position: 10,0
 ---
 {% comment %} Меняется картинка и все такое, несколько картинок показывается {% endcomment %}
-"Хмм, осмотревшись я увидел какое-то растение может он подойдет мне?"
-[[(Подойти к растению?)|Find]]
-[[(Не подходить к растению)|SearchNo]]
+"Hmm, after looking around, I saw some plant. Can it suit me?"
+<<Show @ astragalus, right, 0.4>>
+[[(Pick a plant?)|Find]]
+[[(Don't pick)|SearchNo]]
 
 ===
 
@@ -108,18 +107,19 @@ position: 10,0
 <<UpdateFlag @ 1, sum>>
 {% comment %} Тут крч должен быть селект который будет выбирать рандомно одно растение и пониему мы должны инфу о растении брать {% endcomment %}
 
-"Я подошёл к растению и внимательно рассмотрел его"
-August: "Я где-то видел это растение..."
-August: "Да! В энциклопедии "
-August: "Прежде чем поехать в поездку я захватил энциклопедию лекарственных трав"
-{% comment %} В идеале здесь должна открыться страница с энциклопедией, посмотрим что мы успеем сделать {% endcomment %}
-"Тысячелистник относится к роду Achillea, семейства Астровых (Сложноцветных). А его точное видовое название – тысячелистник обыкновенный (Achillea millefolia). Свое название растение получило из-за формы листьев. На самом деле, конечно, у тысячелистника листьев намного меньше тысячи, но со стороны кажется, что каждый лист травы состоит из множества мелких секций. Листья растения сильно вытянуты. Их длина составляет приблизительно 15 см, а ширина не более 3 см. На обратной стороне листа расположены многочисленные масляные железы. Стебель среднего размера, примерно полметра в высоту, хотя некоторые экземпляры могут достигать в высоту более метра. Соцветие состоит из множества мелких белых или розовых цветочков, сгруппированных в корзиночки. В верхней части цветочки образуют поверхность соцветия в форме щита. Растущая трава также источает характерный запах. Опыляются цветы насекомыми. Семена мелкие, примерно 1,5-2 мм в длину. Растение размножается как при помощи семян, так и вегетативным способом, при помощи корней."
-"Помимо официального названия также известны народные названия растения – порез-трава, порезник, серпорез, чихоточная трава, кашка, белоголовняк, живучая трава, гулявица, кровавник. Большинство из этих названий очень красноречиво и свидетельствует о том, что растение широко использовалась для лечения ран. В лекарственных целях используется не только обыкновенный тысячелистник, но и другие виды тысячелистника – азиатский и щетинистый."
-August: "Ха!, значит я могу использовать его для того чтобы немного подлечить свою ногу!"
-[[(Подойти к растению?)|Find]]
-[[(Не подходить к растению)|SearchNo]]
-"Оторвав немного листьев из тысячелистника я обработал свою рану и мне стало намного легче "
+"I went to the plant and carefully examined it."
 
+August: "I saw this plant somewhere ..."
+August: "Yes! In the encyclopedia"
+August: "Before going on a trip I captured an encyclopedia of medicinal herbs"
+{% comment %} В идеале здесь должна открыться страница с энциклопедией, посмотрим что мы успеем сделать {% endcomment %}
+"Yarrow belongs to the genus Achillea, family Astrovyh (Compository). And its exact species name - yarrow (Achillea millefolia). The plant got its name because of the shape of the leaves. In fact, of course, the yarrow leaves much less than a thousand, but From the side, it seems that each leaf of a grass consists of many small sections. The leaves of the plant are strongly elongated. Their length is about 15 cm and the width is no more than 3 cm. On the reverse side of the leaf there are numerous oil glands.. The stalk is of medium size, about half a meter in height, although some specimens can reach a height of more than a meter. The inflorescence consists of many small white or pink flowers, grouped in baskets. In the upper part of the flowers form the surface of the inflorescence in the form of a shield. Growing grass also exudes a characteristic odor. Flowers are pollinated by insects. Seeds are small, about 1.5-2 mm in length. The plant propagates both with the help of seeds and in a vegetative way, with the help of roots. "
+"In addition to the official name, the popular names of the plant are also known - cut-grass, cutter, serporez, chyhotochnaya grass, porridge, whitehead, tenacious grass, guljavitsa, krovi. Most of these names are very eloquent and indicates that the plant was widely used to treat wounds For medicinal purposes, not only the common yarrow is used, but also other types of yarrow - Asian and bristly. "
+August: "Ha!, So I can use it to heal my leg a little!"
+[[(Approach the plant?)|Find]]
+[[(Don't approach)|SearchNo]]
+"Tearing off some leaves from the yarrow, I treated my wound and it became much easier for me"
+<<Hide @ astragalus>>
 [[Animal]]
 ===
 
@@ -137,6 +137,19 @@ tags:
 colorID: 0
 position: 10,0
 ---
+August: "Надо найти выход отсюда и побыстрее."
+<<Scene @ backanimal>>
+August: "Что? Я слышу что-то?"
+{% comment %} Тут крч нагнетающая музыка {% endcomment %}
+"Из под листьев показывается волк"
+<<Show @ wolf>>
+{% comment %} Звук шуршания листьев {% endcomment %}
+August: ЧТО? ЗДЕСЬ ВОЛК???
+
+August: Мне быстро нужно что-то сделать
+[[(I need to run!)|Run]]
+[[(I need to hide!)|Hide]]
+[[(I need to fight!)|Fight]]
 
 // DON'T DELETE THE "==="
 ===
