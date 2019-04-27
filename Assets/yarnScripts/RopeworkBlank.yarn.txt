@@ -177,8 +177,14 @@ tags:
 colorID: 0
 position: 10,0
 ---
-"Cave"
+"Я бежал, долго очень долго"
+"Волк преследовал меня аж до самого конца. Я думал я умру. Волк был очень быстрым, но я был проворнее"
 <<Hide @ wolf>>
+{% comment %} Звук тяжелого дыхания {% endcomment %}
+"В самый последний момент я нашёл пещеру и спрятался там"
+August: Этот волк что бешенный чтоли? Почему он так сильно гонялся за мной?
+
+
 ===
 
 title: Dead
@@ -195,7 +201,7 @@ colorID: 0
 position: 10,0
 ---
 August: "I need to hide somewhere"
-
+<<UpdateFlag @ 2, sum>>
 <<if $find is false>>
 "I still have problems with my legs. So, i don't think that i can run far."
 <<endif>>
@@ -206,5 +212,44 @@ August: "I need to hide somewhere"
 {% comment %} Звуки водопада {% endcomment %}
 "Whoof, here I'am safe"
 
+title: Fight
+tags: 
+colorID: 0
+position: 10,0
+---
+"I still have some problems with my legs, so I can't run too far"
+<<UpdateFlag @ 3, sum>>
+"So, the only choice I have is to fight with him!"
+"I got ready, gathered all my will into a fist."
+August: "I am not hearing the howl of other wolves, it means there is no flock here, it means he is alone, which, incidentally, happens very rarely"
+August: "Once he was alone, the battle alone, tête-à-tête, the king of the food chain against a petite wolf out there I can handle I have to.!"
+August: "Let's go!"
+"Two outstanding beings clashed in the battle."
+"August ran and kicked in the face of the wolf"
+"The wolf could not dodge, flew back, but immediately got up on its four paws and attacked the man who dared to kick the alpha male!"
+"This wolf was called Alfach Said"
+{% comment %} Выдающаяся музыка, вдохновляющая, пафосная {% endcomment %}
+"He was one of those who alone could resist the five wolves!"
+"Some little man can't stop me!"
+“I’m Said I’m Alfa, I’ll definitely win over him”
+"Having collected all his strength the wolf sent it to his legs and jumped on the man"
+<<if $find is false>>
+"And bit off his neck"
+"The man bled to death in his eyes"
+"Yes! I did it! I was able to defeat a man."
+"And the wolf after that lived happily ever after, standing as a Alpha until his death"
+[[Dead]]
+<<else>>
+"Wolf jumped"
+{% comment %} Звук прыжка {% endcomment %}
+"He jumped so fast that the whistling sound of the wind beat in his ears."
+"All his strength was directed to bite the neck of Man"
+"A man will not be able to dodge, from my great technique 'neck bite'!"
+{% comment %} Звук шлепка {% endcomment %}
+<<Show @ girl, right, 0.4>>
+Rene: August, are you alive ???
+Rene: I'm so glad you're all right, and where does this dog come from here?
+August: With one blow ... You laid the wolf with one blow ...
+===
 // DON'T DELETE THE "==="
 ===
