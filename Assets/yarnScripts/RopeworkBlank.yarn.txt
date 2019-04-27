@@ -167,6 +167,7 @@ August: "I don't think, that i can run forever, i should hide somewhere"
 "Wolf saw the August and run for him"
 August: "Agh... agh..."
 "intermittent breathing"
+<<Shake @ wolf>>
 {% comment %} Звуки ора, мяса и кучи картошек! {% endcomment %}
 [[Dead]]
 <<endif>>
@@ -214,6 +215,7 @@ August: "I need to hide somewhere"
 "I still have problems with my legs. So, i don't think that i can run far."
 <<endif>>
 {% comment %} Звуки волка {% endcomment %}
+<<Shake @ wolf>>
 "Stop, i see there a waterfall, maybe i can hide behind the falling water"
 <<Hide @ wolf>>
 <<Scene @ WaterFall>>
@@ -266,6 +268,7 @@ August: "Let's go!"
 "He jumped so fast that the whistling sound of the wind beat in his ears."
 "All his strength was directed to bite the neck of Man"
 "A man will not be able to dodge, from my great technique 'neck bite'!"
+<<Shake @ wolf>>
 {% comment %} Звук шлепка {% endcomment %}
 <<Hide @ wolf>>
 {% comment %} Скулеж волка {% endcomment %}
