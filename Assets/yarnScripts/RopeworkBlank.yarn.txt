@@ -105,6 +105,7 @@ colorID: 0
 position: 10,0
 ---
 <<UpdateFlag @ 1, sum>>
+
 {% comment %} Тут крч должен быть селект который будет выбирать рандомно одно растение и пониему мы должны инфу о растении брать {% endcomment %}
 
 "I went to the plant and carefully examined it."
@@ -116,8 +117,7 @@ August: "Before going on a trip I captured an encyclopedia of medicinal herbs"
 "Yarrow belongs to the genus Achillea, family Astrovyh (Compository). And its exact species name - yarrow (Achillea millefolia). The plant got its name because of the shape of the leaves. In fact, of course, the yarrow leaves much less than a thousand, but From the side, it seems that each leaf of a grass consists of many small sections. The leaves of the plant are strongly elongated. Their length is about 15 cm and the width is no more than 3 cm. On the reverse side of the leaf there are numerous oil glands.. The stalk is of medium size, about half a meter in height, although some specimens can reach a height of more than a meter. The inflorescence consists of many small white or pink flowers, grouped in baskets. In the upper part of the flowers form the surface of the inflorescence in the form of a shield. Growing grass also exudes a characteristic odor. Flowers are pollinated by insects. Seeds are small, about 1.5-2 mm in length. The plant propagates both with the help of seeds and in a vegetative way, with the help of roots. "
 "In addition to the official name, the popular names of the plant are also known - cut-grass, cutter, serporez, chyhotochnaya grass, porridge, whitehead, tenacious grass, guljavitsa, krovi. Most of these names are very eloquent and indicates that the plant was widely used to treat wounds For medicinal purposes, not only the common yarrow is used, but also other types of yarrow - Asian and bristly. "
 August: "Ha!, So I can use it to heal my leg a little!"
-[[(Approach the plant?)|Find]]
-[[(Don't approach)|SearchNo]]
+<<set $find to true>>
 "Tearing off some leaves from the yarrow, I treated my wound and it became much easier for me"
 <<Hide @ astragalus>>
 [[Animal]]
@@ -129,6 +129,7 @@ colorID: 0
 position: 10,0
 ---
 August: "Er, why should I go to some grass, better look for a way out of here"
+<<Hide @ astragalus>>
 [[Animal]]
 ===
 
@@ -157,17 +158,53 @@ colorID: 0
 position: 10,0
 ---
 <<UpdateFlag @ 1, sum>>
-<<if CheckFlag @ sum is 1>>
-"ti rack"
-<<else>
-"ya rak"
-<<if $count is 1>>
-"lala"
-<<else>>
-"tralala"
-<<endif>>
 August: Run,run,run I must run.
-""
+<<if $find is true>>
+[[Cave]]
+<<else>>
+August: "Agh, I have problems with my leg"
+August: "I don't think, that i can run forever, i should hide somewhere"
+"Wolf saw the August and run for him"
+August: Agh... agh...
+"intermittent breathing"
+{% comment %} Звуки ора, мяса и кучи картошек! {% endcomment %}
+[[Dead]]
+<<endif>>
+===
+
+title: Cave
+tags: 
+colorID: 0
+position: 10,0
+---
+"Cave"
+<<Hide @ wolf>>
+===
+
+title: Dead
+tags: 
+colorID: 0
+position: 10,0
+---
+"You are Dead"
+===
+
+title: Hide
+tags: 
+colorID: 0
+position: 10,0
+---
+August: "I need to hide somewhere"
+
+<<if $find is false>>
+"I still have problems with my legs. So, i don't think that i can run far."
+<<endif>>
+{% comment %} Звуки волка {% endcomment %}
+"Stop, i see there a waterfall, maybe i can hide behind the falling water"
+<<Hide @ wolf>>
+<<Scene @ WaterFall>>
+{% comment %} Звуки водопада {% endcomment %}
+"Whoof, here I'am safe"
 
 // DON'T DELETE THE "==="
 ===

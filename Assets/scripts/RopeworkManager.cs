@@ -256,9 +256,10 @@ namespace Ropework {
 				dbcmd.ExecuteScalar();
 				dbconn.Close();
 			}
+			
 		}
 		[YarnCommand("CheckFlag")]
-		public void checkFlag(params string[] parameters)
+		public int checkFlag(params string[] parameters)
     	{
 			var par = CleanParams( parameters );
 			var flagname = par[0];
@@ -282,10 +283,15 @@ namespace Ropework {
 				dbcmd = null;
 				dbconn.Close();
 				dbconn = null;
-				
+				return 2;
         	}
 		
-    }
+    	}
+		[YarnCommand("SetFlag")]
+		public void SetFlag()
+		{
+			
+		}
 		//End of dbcommands
 		[YarnCommand("Show")]
 		public Image SetSprite(params string[] parameters) {
