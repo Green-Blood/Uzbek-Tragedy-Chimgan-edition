@@ -136,7 +136,6 @@ namespace Ropework {
 				dbcmd.CommandText = sqlQuery;
 				dbcmd.ExecuteScalar();
 		}
-
 		private void checking()
 		{
 			using (dbconn = new SqliteConnection(conn))
@@ -146,8 +145,6 @@ namespace Ropework {
 				dbconn.Close();
 			}
 		}
-
-		
 
 		private void insertvalue(int id, string name)
 		{
@@ -239,31 +236,22 @@ namespace Ropework {
 		// SetSprite(spriteName,positionX,positionY)
 		// generic function for sprite drawing
 		//DbYarnCommands
-		[YarnCommand("DbConnect")]
-		public void DbConnect()
-		{
-			Debug.Log("Kaka");
-		}
 		[YarnCommand("UpdateFlag")]
 		public void UpdateValue(params string[] parameters)
 		{
 			var par = CleanParams( parameters );
 			var count = par[0];
 			var flagname = par[1];
-			Debug.Log("Updated4");
+			
 			using (dbconn = new SqliteConnection(conn))
 			{
-				
 				dbconn.Open(); //Open connection to the database.
 				dbcmd = dbconn.CreateCommand();
 				sqlQuery = string.Format("UPDATE flags SET count = count+\"{0}\" WHERE name = \"{1}\"",count ,flagname );// table name
-				Debug.Log("Updated3");
-				dbcmd.CommandText = sqlQuery;
-				Debug.Log("Updated2"); 
+				dbcmd.CommandText = sqlQuery;			
 				dbcmd.ExecuteScalar();
-				Debug.Log("Updated1");
 				dbconn.Close();
-				Debug.Log("Updated");
+				
 			}
 		}
 		[YarnCommand("Show")]
