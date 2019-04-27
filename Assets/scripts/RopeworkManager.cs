@@ -57,8 +57,8 @@ namespace Ropework {
 			//DB part
 			conn = "URI=file:" + Application.dataPath + "/gamedb.db"; 
 			// checking();
-			// getDDL();
-			// getDML();
+			//getDDL();
+			getDML();
 			// insertvalue(1,"Bob");
 			// updatevalue("Jack", 1);
 			// deletevalue(1);
@@ -81,60 +81,64 @@ namespace Ropework {
 			{
 				dbconn.Open(); //Open connection to the database.
 				dbcmd = dbconn.CreateCommand();
-				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Flags(F_ID INTEGER PRIMARY KEY AUTOINCREMENT, Name VARCHAR(20) NOT NULL, Count INTEGER NULL);");// table name
-				dbcmd.CommandText = sqlQuery;
-				dbcmd.ExecuteScalar();
+				// sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Flags(F_ID INTEGER PRIMARY KEY AUTOINCREMENT, Name VARCHAR(20) NOT NULL, Count INTEGER NULL);");// table name
+				// dbcmd.CommandText = sqlQuery;
+				// dbcmd.ExecuteScalar();
 
-				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Endings(E_ID INTEGER NOT NULL,Happened INTEGER NULL, PRIMARY KEY (E_ID));");// table name
-				dbcmd.CommandText = sqlQuery;
-				dbcmd.ExecuteScalar();
+				// sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Endings(E_ID INTEGER NOT NULL,Happened INTEGER NULL, PRIMARY KEY (E_ID));");// table name
+				// dbcmd.CommandText = sqlQuery;
+				// dbcmd.ExecuteScalar();
 
-				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS GameResult(F_ID INTEGER NOT NULL, E_ID INTEGER NOT NULL, Flag_Sum INTEGER NULL, PRIMARY KEY (F_ID,E_ID), FOREIGN KEY (F_ID) REFERENCES Flags (F_ID), FOREIGN KEY (E_ID) REFERENCES Endings (E_ID));");// table name
-				dbcmd.CommandText = sqlQuery;
-				dbcmd.ExecuteScalar(); 
+				// sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS GameResult(F_ID INTEGER NOT NULL, E_ID INTEGER NOT NULL, Flag_Sum INTEGER NULL, PRIMARY KEY (F_ID,E_ID), FOREIGN KEY (F_ID) REFERENCES Flags (F_ID), FOREIGN KEY (E_ID) REFERENCES Endings (E_ID));");// table name
+				// dbcmd.CommandText = sqlQuery;
+				// dbcmd.ExecuteScalar(); 
 
-				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Achievements(A_ID INTEGER NOT NULL, AchieveName VARCHAR(20) NULL, Cost INTEGER NULL, Info VARCHAR(20) NULL, Achieved INTEGER NULL, F_ID INTEGER NULL, E_ID INTEGER NULL, PRIMARY KEY (A_ID),FOREIGN KEY (F_ID) REFERENCES Flags (F_ID),FOREIGN KEY (F_ID, E_ID) REFERENCES GameResult (F_ID, E_ID));");// table name
-				dbcmd.CommandText = sqlQuery;
-				dbcmd.ExecuteScalar();
+				// sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Achievements(A_ID INTEGER NOT NULL, AchieveName VARCHAR(20) NULL, Cost INTEGER NULL, Info VARCHAR(20) NULL, Achieved INTEGER NULL, F_ID INTEGER NULL, E_ID INTEGER NULL, PRIMARY KEY (A_ID),FOREIGN KEY (F_ID) REFERENCES Flags (F_ID),FOREIGN KEY (F_ID, E_ID) REFERENCES GameResult (F_ID, E_ID));");// table name
+				// dbcmd.CommandText = sqlQuery;
+				// dbcmd.ExecuteScalar();
 
-				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Characters( ID INTEGER NOT NULL, Name VARCHAR(20) NULL, PRIMARY KEY (ID));");// table name
-				dbcmd.CommandText = sqlQuery;
-				dbcmd.ExecuteScalar();
+				// sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Characters( ID INTEGER NOT NULL, Name VARCHAR(20) NULL, PRIMARY KEY (ID));");// table name
+				// dbcmd.CommandText = sqlQuery;
+				// dbcmd.ExecuteScalar();
 
-				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Images(State_img VARCHAR(20) NOT NULL, NPC_ID INTEGER NOT NULL, PRIMARY KEY (State_img,NPC_ID), FOREIGN KEY (NPC_ID) REFERENCES NPC (NPC_ID));");// table name
-				dbcmd.CommandText = sqlQuery;
-				dbcmd.ExecuteScalar();
+				// sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Images(State_img VARCHAR(20) NOT NULL, NPC_ID INTEGER NOT NULL, PRIMARY KEY (State_img,NPC_ID), FOREIGN KEY (NPC_ID) REFERENCES NPC (NPC_ID));");// table name
+				// dbcmd.CommandText = sqlQuery;
+				// dbcmd.ExecuteScalar();
 
-				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Items( ID INTEGER NOT NULL, Name VARCHAR(20) NULL, Info VARCHAR(20) NULL, itemType INTEGER NULL, PRIMARY KEY (ID));");// table name
-				dbcmd.CommandText = sqlQuery;
-				dbcmd.ExecuteScalar();
+				// sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Items( ID INTEGER NOT NULL, Name VARCHAR(20) NULL, Info VARCHAR(20) NULL, itemType INTEGER NULL, PRIMARY KEY (ID));");// table name
+				// dbcmd.CommandText = sqlQuery;
+				// dbcmd.ExecuteScalar();
 
-				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Plants (ID INTEGER NOT NULL, Properties VARCHAR(20) NULL, PRIMARY KEY (ID), FOREIGN KEY (ID) REFERENCES Items (ID) );");// table name
-				dbcmd.CommandText = sqlQuery;
-				dbcmd.ExecuteScalar();
+				// sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Plants (ID INTEGER NOT NULL, Properties VARCHAR(20) NULL, PRIMARY KEY (ID), FOREIGN KEY (ID) REFERENCES Items (ID) );");// table name
+				// dbcmd.CommandText = sqlQuery;
+				// dbcmd.ExecuteScalar();
 
-				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Objects( ID INTEGER NOT NULL, Properties VARCHAR(20) NULL, TL INTEGER NULL, PRIMARY KEY (ID), FOREIGN KEY (ID) REFERENCES Items (ID) );");// table name
-				dbcmd.CommandText = sqlQuery;
-				dbcmd.ExecuteScalar();
+				// sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Objects( ID INTEGER NOT NULL, Properties VARCHAR(20) NULL, TL INTEGER NULL, PRIMARY KEY (ID), FOREIGN KEY (ID) REFERENCES Items (ID) );");// table name
+				// dbcmd.CommandText = sqlQuery;
+				// dbcmd.ExecuteScalar();
 
-				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Inventory ( I_ID INTEGER NOT NULL, Charge INTEGER NULL, PRIMARY KEY (I_ID), FOREIGN KEY (I_ID) REFERENCES Plants (ID), FOREIGN KEY (I_ID) REFERENCES Objects (ID));");// table name
-				dbcmd.CommandText = sqlQuery;
-				dbcmd.ExecuteScalar();
+				// sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Inventory ( I_ID INTEGER NOT NULL, Charge INTEGER NULL, PRIMARY KEY (I_ID), FOREIGN KEY (I_ID) REFERENCES Plants (ID), FOREIGN KEY (I_ID) REFERENCES Objects (ID));");// table name
+				// dbcmd.CommandText = sqlQuery;
+				// dbcmd.ExecuteScalar();
 
-				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Player ( P_ID INTEGER NOT NULL, Name VARCHAR(20) NOT NULL, Score INTEGER NULL, PRIMARY KEY (P_ID), FOREIGN KEY (P_ID) REFERENCES Characters (ID), FOREIGN KEY (P_ID) REFERENCES Inventory (I_ID), FOREIGN KEY (P_ID) REFERENCES Flags (F_ID));");// table name
-				dbcmd.CommandText = sqlQuery;
-				dbcmd.ExecuteScalar();
+				// sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Player ( P_ID INTEGER NOT NULL, Name VARCHAR(20) NOT NULL, Score INTEGER NULL, PRIMARY KEY (P_ID), FOREIGN KEY (P_ID) REFERENCES Characters (ID), FOREIGN KEY (P_ID) REFERENCES Inventory (I_ID), FOREIGN KEY (P_ID) REFERENCES Flags (F_ID));");// table name
+				// dbcmd.CommandText = sqlQuery;
+				// dbcmd.ExecuteScalar();
 
 				dbconn.Close();
 			}
 		}
 		private void getDML()
 		{
+			using (dbconn = new SqliteConnection(conn))
+			{
 			dbconn.Open(); //Open connection to the database.
 				dbcmd = dbconn.CreateCommand();
 				sqlQuery = string.Format("INsert or replace into flags (F_ID,name,count) values((select F_ID from flags where name = 'sum'), 'sum', 0)");// table name
 				dbcmd.CommandText = sqlQuery;
 				dbcmd.ExecuteScalar();
+			dbconn.Close();
+			}
 		}
 		private void checking()
 		{
@@ -251,9 +255,38 @@ namespace Ropework {
 				dbcmd.CommandText = sqlQuery;			
 				dbcmd.ExecuteScalar();
 				dbconn.Close();
-				
 			}
 		}
+		[YarnCommand("CheckFlag")]
+		public void checkFlag(params string[] parameters)
+    	{
+			var par = CleanParams( parameters );
+			var flagname = par[0];
+			
+			using (dbconn = new SqliteConnection(conn))
+			{
+				dbconn.Open(); //Open connection to the database.
+				dbcmd = dbconn.CreateCommand();
+				sqlQuery = string.Format("SELECT count " + "FROM flags where name = '\"{0}\"' ", flagname);// table name
+				dbcmd.CommandText = sqlQuery;
+				IDataReader reader = dbcmd.ExecuteReader();
+				while (reader.Read())
+				{
+					int count = reader.GetInt32(0);
+					Debug.Log("Hello: " + count);
+				}
+				
+				reader.Close();
+				reader = null;
+				dbcmd.Dispose();
+				dbcmd = null;
+				dbconn.Close();
+				dbconn = null;
+				
+        	}
+		
+    }
+		//End of dbcommands
 		[YarnCommand("Show")]
 		public Image SetSprite(params string[] parameters) {
 			var par = CleanParams( parameters );

@@ -35,7 +35,7 @@ Morphius: Oh yeah
 Morphius: Zod, look at the window
 <<Act @ Zod, boy1, left, 0.40, black>>
 Zod: Сейчас
-"Zod, was one of the wise guys of uni, he always gained first place in the tests. "
+"Zod, is one of the the cleverest guys of our University, he always gets first place in the tests. "
 "And so we are four friends, we went to the mountains together"
 <<Hide @ Zod>>
 //Звук неисправностей
@@ -137,19 +137,37 @@ tags:
 colorID: 0
 position: 10,0
 ---
-August: "Надо найти выход отсюда и побыстрее."
+August: "I must find a way out of here and quickly."
 <<Scene @ backanimal>>
-August: "Что? Я слышу что-то?"
+August: "What? I hear something?"
 {% comment %} Тут крч нагнетающая музыка {% endcomment %}
-"Из под листьев показывается волк"
-<<Show @ wolf>>
+"From under the leaves shows a wolf"
+<<Show @ wolf, center , 0.3>>
 {% comment %} Звук шуршания листьев {% endcomment %}
-August: ЧТО? ЗДЕСЬ ВОЛК???
-
-August: Мне быстро нужно что-то сделать
+August: WHAT? WOLF IN THIS MOUNTAINS???
+August: I need to do something quickly.
 [[(I need to run!)|Run]]
 [[(I need to hide!)|Hide]]
 [[(I need to fight!)|Fight]]
+===
+
+title: Run
+tags: 
+colorID: 0
+position: 10,0
+---
+<<UpdateFlag @ 1, sum>>
+<<if CheckFlag @ sum is 1>>
+"ti rack"
+<<else>
+"ya rak"
+<<if $count is 1>>
+"lala"
+<<else>>
+"tralala"
+<<endif>>
+August: Run,run,run I must run.
+""
 
 // DON'T DELETE THE "==="
 ===
