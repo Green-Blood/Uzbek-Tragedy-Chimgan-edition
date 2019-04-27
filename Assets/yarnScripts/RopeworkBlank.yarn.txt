@@ -38,11 +38,13 @@ Zod: Сейчас
 "Zod, is one of the the cleverest guys of our University, he always gets first place in the tests. "
 "And so we are four friends, we went to the mountains together"
 <<Hide @ Zod>>
+<<PlayAudio @ Crash, 1>>
 //Звук неисправностей
 Rene: What? What happened?
 //Звук взрыва
-{% comment %} Important Bus explosion {% endcomment %}
+<<PlayAudio @ Explosion, 1>>
 //Звук падения и всякого такого
+<<PlayAudio @ BodyFALL, 1>>
 <<Fade @ white, 1.0, 1.0, 1.0>>
 "Am..am I alive?"
 <<PlayAudio @ ambient_birds, 0.5>>
@@ -91,8 +93,14 @@ tags:
 colorID: 0
 position: 10,0
 ---
-{% comment %} Меняется картинка и все такое, несколько картинок показывается {% endcomment %}
+<<PlayAudio @ back1, 0.4, loop>>
+<<Scene @ chimgan3>>
+"."
+<<Scene @ chimgan2>>
+"."
+<<Scene @ chimgan6>>
 "Hmm, after looking around, I saw some plant. Can it suit me?"
+<<Scene @ chimgan5>>
 <<Show @ astragalus, right, 0.4>>
 [[(Pick a plant?)|Find]]
 [[(Don't pick)|SearchNo]]
@@ -106,14 +114,14 @@ position: 10,0
 ---
 <<UpdateFlag @ 1, sum>>
 
-{% comment %} Тут крч должен быть селект который будет выбирать рандомно одно растение и пониему мы должны инфу о растении брать {% endcomment %}
+//{% comment %} Тут крч должен быть селект который будет выбирать рандомно одно растение и пониему мы должны инфу о растении брать {% endcomment %}
 
 "I went to the plant and carefully examined it."
 
 August: "I saw this plant somewhere ..."
 August: "Yes! In the encyclopedia"
 August: "Before going on a trip I captured an encyclopedia of medicinal herbs"
-{% comment %} В идеале здесь должна открыться страница с энциклопедией, посмотрим что мы успеем сделать {% endcomment %}
+//{% comment %} В идеале здесь должна открыться страница с энциклопедией, посмотрим что мы успеем сделать {% endcomment %}
 "Yarrow belongs to the genus Achillea, family Astrovyh (Compository). And its exact species name - yarrow (Achillea millefolia). The plant got its name because of the shape of the leaves. In fact, of course, the yarrow leaves much less than a thousand, but From the side, it seems that each leaf of a grass consists of many small sections. The leaves of the plant are strongly elongated. Their length is about 15 cm and the width is no more than 3 cm. On the reverse side of the leaf there are numerous oil glands.. The stalk is of medium size, about half a meter in height, although some specimens can reach a height of more than a meter. The inflorescence consists of many small white or pink flowers, grouped in baskets. In the upper part of the flowers form the surface of the inflorescence in the form of a shield. Growing grass also exudes a characteristic odor. Flowers are pollinated by insects. Seeds are small, about 1.5-2 mm in length. The plant propagates both with the help of seeds and in a vegetative way, with the help of roots. "
 "In addition to the official name, the popular names of the plant are also known - cut-grass, cutter, serporez, chyhotochnaya grass, porridge, whitehead, tenacious grass, guljavitsa, krovi. Most of these names are very eloquent and indicates that the plant was widely used to treat wounds For medicinal purposes, not only the common yarrow is used, but also other types of yarrow - Asian and bristly. "
 August: "Ha!, So I can use it to heal my leg a little!"
@@ -144,8 +152,10 @@ August: "What? I hear something?"
 {% comment %} Тут крч нагнетающая музыка {% endcomment %}
 "From under the leaves shows a wolf"
 <<Show @ wolf, center , 0.3>>
+<<PlayAudio @ Leaves, 1>>
 {% comment %} Звук шуршания листьев {% endcomment %}
 August: WHAT? WOLF IN THIS MOUNTAINS???
+<<PlayAudio @ Leaves2, 1>>
 August: I need to do something quickly.
 [[(I need to run!)|Run]]
 [[(I need to hide!)|Hide]]
@@ -165,9 +175,13 @@ August: Run,run,run I must run.
 August: "Agh, I have problems with my leg"
 August: "I don't think, that i can run forever, i should hide somewhere"
 "Wolf saw the August and run for him"
-August: Agh... agh...
+August: "Agh... agh..."
 "intermittent breathing"
-{% comment %} Звуки ора, мяса и кучи картошек! {% endcomment %}
+<<PlayAudio @ BodyFALL, 1>>
+
+<<Shake @ wolf>>
+<<PlayAudio @ Death, 1>>
+//{% comment %} Звуки ора, мяса и кучи картошек! {% endcomment %}
 [[Dead]]
 <<endif>>
 ===
@@ -177,14 +191,23 @@ tags:
 colorID: 0
 position: 10,0
 ---
-"Я бежал, долго очень долго"
-"Волк преследовал меня аж до самого конца. Я думал я умру. Волк был очень быстрым, но я был проворнее"
 <<Hide @ wolf>>
-{% comment %} Звук тяжелого дыхания {% endcomment %}
-"В самый последний момент я нашёл пещеру и спрятался там"
-August: Этот волк что бешенный чтоли? Почему он так сильно гонялся за мной?
-
-
+"I ran, long very long"
+“The wolf followed me right up to the very end. I thought I would die. The wolf was very fast, but I was quicker”
+//{% comment %} Звук тяжелого дыхания {% endcomment %}
+<<PlayAudio @ HeavyBreath, 1>>
+<<Scene @ cave>>
+"At the very last moment I found a cave and hid there"
+August: "This wolf is so crazy? Why did he chase me so hard?
+Zod: August, is it you?
+<<Show @ boy1_laugh, center , 0.3>>
+Zod: Is that really you?
+Zod: I thought everyone died and only I was left alone
+Zod: How glad I am that I could find you
+<<Hide @ boy1_laugh>>
+<<Show @ boy1_smile, center , 0.3>>
+August: Zod, my friend ...
+"Tears came to my eyes and I almost burst into tears of happiness, especially after I could barely save myself from a wolf who came from no one knows where"
 ===
 
 title: Dead
@@ -205,12 +228,28 @@ August: "I need to hide somewhere"
 <<if $find is false>>
 "I still have problems with my legs. So, i don't think that i can run far."
 <<endif>>
-{% comment %} Звуки волка {% endcomment %}
+
+<<PlayAudio @ Wolf, 1>>
+//{% comment %} Звуки волка {% endcomment %}
+<<Shake @ wolf>>
 "Stop, i see there a waterfall, maybe i can hide behind the falling water"
 <<Hide @ wolf>>
 <<Scene @ WaterFall>>
-{% comment %} Звуки водопада {% endcomment %}
+<<PlayAudio @ Waterfall, 1>>
+//{% comment %} Звуки водопада {% endcomment %}
 "Whoof, here I'am safe"
+"I hope, he can't find me here"
+<<Scene @ WaterFall1>>
+<<Show @ boy2_confused, center , 0.3>>
+
+Morphius: August is this you?
+August: Morphius, my dear friend
+Morphius: I thought you are dead. I'm so happy that someone is alive
+<<Hide @ boy2_confused>>
+<<Show @ boy2_confused, center , 0.3>>
+August: Me too, How you got there?
+Morphius: After the crash I looked for a water, and got here.
+===
 
 title: Fight
 tags: 
@@ -222,8 +261,10 @@ position: 10,0
 "So, the only choice I have is to fight with him!"
 "I got ready, gathered all my will into a fist."
 August: "I am not hearing the howl of other wolves, it means there is no flock here, it means he is alone, which, incidentally, happens very rarely"
+<<StopAudio @ back1>>
 August: "Once he was alone, the battle alone, tête-à-tête, the king of the food chain against a petite wolf out there I can handle I have to.!"
 August: "Let's go!"
+<<PlayAudio @ backwolf, 0.5, loop>>
 "Two outstanding beings clashed in the battle."
 "August ran and kicked in the face of the wolf"
 "The wolf could not dodge, flew back, but immediately got up on its four paws and attacked the man who dared to kick the alpha male!"
@@ -241,15 +282,25 @@ August: "Let's go!"
 [[Dead]]
 <<else>>
 "Wolf jumped"
+<<Shake @ wolf>>
 {% comment %} Звук прыжка {% endcomment %}
 "He jumped so fast that the whistling sound of the wind beat in his ears."
 "All his strength was directed to bite the neck of Man"
 "A man will not be able to dodge, from my great technique 'neck bite'!"
+<<Shake @ wolf>>
+<<PlayAudio @ Slap, 1>>
 {% comment %} Звук шлепка {% endcomment %}
-<<Show @ girl, right, 0.4>>
-Rene: August, are you alive ???
-Rene: I'm so glad you're all right, and where does this dog come from here?
-August: With one blow ... You laid the wolf with one blow ...
-===
+<<StopAudio @ backwolf>>
+<<Hide @ wolf>>
+<<PlayAudio @ Whining, 1>>
+{% comment %} Скулеж волка {% endcomment %}
+<<Show @ girl_smile, center , 0.3>>
+Rene: "August, are you alive ???"
+Rene: "I'm so glad you're all right, and where does this dog come from here?"
+<<Show @ girl_laugh, center , 0.3>>
+August: "With one blow ... You laid the wolf with one blow ..."
+<<endif>>
+
+
 // DON'T DELETE THE "==="
 ===
