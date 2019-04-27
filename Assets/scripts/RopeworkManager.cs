@@ -55,7 +55,7 @@ namespace Ropework {
 
 		void Start () {
 			//DB part
-			conn = "URI=file:" + Application.dataPath + "/gameNEW.db"; 
+			conn = "URI=file:" + Application.dataPath + "/gamedb.db"; 
 			// checking();
 			// getDDL();
 			// getDML();
