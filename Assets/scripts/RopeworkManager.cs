@@ -55,11 +55,13 @@ namespace Ropework {
 
 		void Start () {
 			//DB part
-			conn = "URI=file:" + Application.dataPath + "/Db/gameNEW.db"; 
+			conn = "URI=file:" + Application.dataPath + "/gameNEW.db"; 
+			checking();
 			getDDL();
+			getDML();
 			// insertvalue(1,"Bob");
 			// updatevalue("Jack", 1);
-			deletevalue(1);
+			// deletevalue(1);
 
 
 
@@ -79,7 +81,7 @@ namespace Ropework {
 			{
 				dbconn.Open(); //Open connection to the database.
 				dbcmd = dbconn.CreateCommand();
-				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Flags(Name VARCHAR(20) NOT NULL,Count INTEGER NULL, PRIMARY KEY (Name));");// table name
+				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Flags(F_ID INTEGER PRIMARY KEY AUTOINCREMENT, Name VARCHAR(20) NOT NULL, Count INTEGER NULL);");// table name
 				dbcmd.CommandText = sqlQuery;
 				dbcmd.ExecuteScalar();
 
@@ -87,11 +89,11 @@ namespace Ropework {
 				dbcmd.CommandText = sqlQuery;
 				dbcmd.ExecuteScalar();
 
-				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS GameResult(Name VARCHAR(20) NOT NULL, E_ID INTEGER NOT NULL, Flag_Sum INTEGER NULL, PRIMARY KEY (Name,E_ID), FOREIGN KEY (Name) REFERENCES Flags (Name), FOREIGN KEY (E_ID) REFERENCES Endings (E_ID));");// table name
+				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS GameResult(F_ID INTEGER NOT NULL, E_ID INTEGER NOT NULL, Flag_Sum INTEGER NULL, PRIMARY KEY (F_ID,E_ID), FOREIGN KEY (F_ID) REFERENCES Flags (F_ID), FOREIGN KEY (E_ID) REFERENCES Endings (E_ID));");// table name
 				dbcmd.CommandText = sqlQuery;
-				dbcmd.ExecuteScalar();
+				dbcmd.ExecuteScalar(); 
 
-				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Achievements(A_ID INTEGER NOT NULL, AchieveName VARCHAR(20) NULL, Cost INTEGER NULL, Info VARCHAR(20) NULL, Achieved INTEGER NULL, Name VARCHAR(20) NULL, E_ID INTEGER NULL, PRIMARY KEY (A_ID),FOREIGN KEY (Name) REFERENCES Flags (Name),FOREIGN KEY (Name, E_ID) REFERENCES GameResult (Name, E_ID));");// table name
+				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Achievements(A_ID INTEGER NOT NULL, AchieveName VARCHAR(20) NULL, Cost INTEGER NULL, Info VARCHAR(20) NULL, Achieved INTEGER NULL, F_ID INTEGER NULL, E_ID INTEGER NULL, PRIMARY KEY (A_ID),FOREIGN KEY (F_ID) REFERENCES Flags (F_ID),FOREIGN KEY (F_ID, E_ID) REFERENCES GameResult (F_ID, E_ID));");// table name
 				dbcmd.CommandText = sqlQuery;
 				dbcmd.ExecuteScalar();
 
@@ -119,38 +121,33 @@ namespace Ropework {
 				dbcmd.CommandText = sqlQuery;
 				dbcmd.ExecuteScalar();
 
-				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Player ( P_ID INTEGER NOT NULL, Name VARCHAR(20) NOT NULL, Score INTEGER NULL, PRIMARY KEY (P_ID), FOREIGN KEY (P_ID) REFERENCES Characters (ID), FOREIGN KEY (P_ID) REFERENCES Inventory (I_ID), FOREIGN KEY (Name) REFERENCES Flags (Name));");// table name
+				sqlQuery = string.Format("CREATE TABLE IF NOT EXISTS Player ( P_ID INTEGER NOT NULL, Name VARCHAR(20) NOT NULL, Score INTEGER NULL, PRIMARY KEY (P_ID), FOREIGN KEY (P_ID) REFERENCES Characters (ID), FOREIGN KEY (P_ID) REFERENCES Inventory (I_ID), FOREIGN KEY (P_ID) REFERENCES Flags (F_ID));");// table name
 				dbcmd.CommandText = sqlQuery;
 				dbcmd.ExecuteScalar();
+
 				dbconn.Close();
 			}
 		}
+		private void getDML()
+		{
+			dbconn.Open(); //Open connection to the database.
+				dbcmd = dbconn.CreateCommand();
+				sqlQuery = string.Format("INsert or replace into flags (F_ID,name,count) values((select F_ID from flags where name = 'sum'), 'sum', 0)");// table name
+				dbcmd.CommandText = sqlQuery;
+				dbcmd.ExecuteScalar();
+		}
 
-		// private void checking()
-		// {
-		// 	using (dbconn = new SqliteConnection(conn))
-		// 	{
-
-
-		// 		dbconn.Open(); 
-		// 		// getDDL();
-		// 		dbconn.Close();
-		// 	}
-		// }
-
-		private void updatevalue(string name, int id)
+		private void checking()
 		{
 			using (dbconn = new SqliteConnection(conn))
 			{
-
-				dbconn.Open(); //Open connection to the database.
-				dbcmd = dbconn.CreateCommand();
-				sqlQuery = string.Format("UPDATE Characters SET Name=\"{0}\" WHERE ID = \"{1}\"", name, id);// table name
-				dbcmd.CommandText = sqlQuery; 
-				dbcmd.ExecuteScalar();
+				dbconn.Open(); 
+				// getDDL();
 				dbconn.Close();
 			}
 		}
+
+		
 
 		private void insertvalue(int id, string name)
 		{
@@ -179,10 +176,11 @@ namespace Ropework {
 		}
 
 		#region YarnCommands
-
+		
 		// changes background image
 		[YarnCommand("Scene")]
 		public void DoSceneChange(string spriteName) {
+			
 			bgImage.sprite = FetchAsset<Sprite>(spriteName);
 		}
 
@@ -237,13 +235,37 @@ namespace Ropework {
 			actors.Add( actorName, newActor );
 			actorColors.Add( actorName, actorColor );
 		}
+		
+		// SetSprite(spriteName,positionX,positionY)
+		// generic function for sprite drawing
+		//DbYarnCommands
 		[YarnCommand("DbConnect")]
 		public void DbConnect()
 		{
 			Debug.Log("Kaka");
 		}
-		// SetSprite(spriteName,positionX,positionY)
-		// generic function for sprite drawing
+		[YarnCommand("UpdateFlag")]
+		public void UpdateValue(params string[] parameters)
+		{
+			var par = CleanParams( parameters );
+			var count = par[0];
+			var flagname = par[1];
+			Debug.Log("Updated4");
+			using (dbconn = new SqliteConnection(conn))
+			{
+				
+				dbconn.Open(); //Open connection to the database.
+				dbcmd = dbconn.CreateCommand();
+				sqlQuery = string.Format("UPDATE flags SET count = count+\"{0}\" WHERE name = \"{1}\"",count ,flagname );// table name
+				Debug.Log("Updated3");
+				dbcmd.CommandText = sqlQuery;
+				Debug.Log("Updated2"); 
+				dbcmd.ExecuteScalar();
+				Debug.Log("Updated1");
+				dbconn.Close();
+				Debug.Log("Updated");
+			}
+		}
 		[YarnCommand("Show")]
 		public Image SetSprite(params string[] parameters) {
 			var par = CleanParams( parameters );
