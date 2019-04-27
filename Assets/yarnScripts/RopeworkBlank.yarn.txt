@@ -165,7 +165,7 @@ August: Run,run,run I must run.
 August: "Agh, I have problems with my leg"
 August: "I don't think, that i can run forever, i should hide somewhere"
 "Wolf saw the August and run for him"
-August: Agh... agh...
+August: "Agh... agh..."
 "intermittent breathing"
 {% comment %} Звуки ора, мяса и кучи картошек! {% endcomment %}
 [[Dead]]
@@ -177,14 +177,22 @@ tags:
 colorID: 0
 position: 10,0
 ---
-"Я бежал, долго очень долго"
-"Волк преследовал меня аж до самого конца. Я думал я умру. Волк был очень быстрым, но я был проворнее"
 <<Hide @ wolf>>
+"I ran, long very long"
+“The wolf followed me right up to the very end. I thought I would die. The wolf was very fast, but I was quicker”
 {% comment %} Звук тяжелого дыхания {% endcomment %}
-"В самый последний момент я нашёл пещеру и спрятался там"
-August: Этот волк что бешенный чтоли? Почему он так сильно гонялся за мной?
-
-
+<<Scene @ cave>>
+"At the very last moment I found a cave and hid there"
+August: "This wolf is so crazy? Why did he chase me so hard?
+Zod: August, is it you?
+<<Show @ boy1_laugh, center , 0.3>>
+Zod: Is that really you?
+Zod: I thought everyone died and only I was left alone
+Zod: How glad I am that I could find you
+<<Hide @ boy1_laugh>>
+<<Show @ boy1_smile, center , 0.3>>
+August: Zod, my friend ...
+"Tears came to my eyes and I almost burst into tears of happiness, especially after I could barely save myself from a wolf who came from no one knows where"
 ===
 
 title: Dead
@@ -211,6 +219,18 @@ August: "I need to hide somewhere"
 <<Scene @ WaterFall>>
 {% comment %} Звуки водопада {% endcomment %}
 "Whoof, here I'am safe"
+"I hope, he can't find me here"
+<<Scene @ WaterFall1>>
+<<Show @ boy2_confused, center , 0.3>>
+
+Morphius: August is this you?
+August: Morphius, my dear friend
+Morphius: I thought you are dead. I'm so happy that someone is alive
+<<Hide @ boy2_confused>>
+<<Show @ boy2_confused, center , 0.3>>
+August: Me too, How you got there?
+Morphius: After the crash I looked for a water, and got here.
+===
 
 title: Fight
 tags: 
@@ -241,15 +261,21 @@ August: "Let's go!"
 [[Dead]]
 <<else>>
 "Wolf jumped"
+<<Shake @ wolf>>
 {% comment %} Звук прыжка {% endcomment %}
 "He jumped so fast that the whistling sound of the wind beat in his ears."
 "All his strength was directed to bite the neck of Man"
 "A man will not be able to dodge, from my great technique 'neck bite'!"
 {% comment %} Звук шлепка {% endcomment %}
-<<Show @ girl, right, 0.4>>
-Rene: August, are you alive ???
-Rene: I'm so glad you're all right, and where does this dog come from here?
-August: With one blow ... You laid the wolf with one blow ...
-===
+<<Hide @ wolf>>
+{% comment %} Скулеж волка {% endcomment %}
+<<Show @ girl_smile, center , 0.3>>
+Rene: "August, are you alive ???"
+Rene: "I'm so glad you're all right, and where does this dog come from here?"
+<<Show @ girl_laugh, center , 0.3>>
+August: "With one blow ... You laid the wolf with one blow ..."
+<<endif>>
+
+
 // DON'T DELETE THE "==="
 ===
