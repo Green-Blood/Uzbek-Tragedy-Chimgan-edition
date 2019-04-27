@@ -128,7 +128,7 @@ tags:
 colorID: 0
 position: 10,0
 ---
-August: "Э зачем мне идти к какой-то траве лучше поищу выход отсюда"
+August: "Er, why should I go to some grass, better look for a way out of here"
 [[Animal]]
 ===
 
