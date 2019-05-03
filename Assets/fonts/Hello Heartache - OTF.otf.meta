@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 59279729c4ce25e48b1286cb66548c8f
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Hello Heartache
+  fontNames:
+  - Hello Heartache
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 44b62fbb57db4764c9c5fce34d3ee69f, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

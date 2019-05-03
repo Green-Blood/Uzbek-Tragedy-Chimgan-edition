@@ -5,13 +5,23 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public string Playgamelevel;
+    public string Encyclopedia;
+    public string goMainMenu;
     public void PlayGame()
     {
         SceneManager.LoadScene(Playgamelevel);
+    }
+    public void gotoMainmenu()
+    {
+        SceneManager.LoadScene(goMainMenu);
     }
     public void QuitGame()
     {
         Debug.Log("QUIT");
         Application.Quit();
+    }
+    public void PlayEncyclopedia()
+    {
+        SceneManager.LoadScene(Encyclopedia);
     }
 }
