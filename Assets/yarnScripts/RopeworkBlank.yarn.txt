@@ -208,6 +208,65 @@ Zod: How glad I am that I could find you
 <<Show @ boy1_smile, center , 0.3>>
 August: Zod, my friend ...
 "Tears came to my eyes and I almost burst into tears of happiness, especially after I could barely save myself from a wolf who came from no one knows where"
+//voice
+"OMG, Earthquake has happend!"
+"I hear Zod screaming"
+//voice
+Zod: "Help! Help!"
+[[August: (Help)|HelpZod]]
+[[August: (Don't help)|ZodDead]]
+===
+title: HelpZod
+tags: 
+colorID: 0
+position: 10,0
+---
+Zod: "You saved my life. Thank you my friend."
+August: "You are welcome! I know I'm a good person, ahahah"
+August: "We need to find a way to get out from this place. The mountain is so high..."
+Zod: "Oh yeah, let's climb down"
+August: "Ouch, I'm hurted. I sprained my hand."
+Zod: "Poor little soul. I feel sorry for that... I have an idea! Here is a rope we can use to climb down the mountain. But I'm not sure whether it is reliable or not"
+[[August: (Climb down with a rope)| ClimbOk]]
+[[August: (Climb down without a rope)| Dead]]
+
+=== 
+
+title: ClimbOk
+tags: 
+colorID: 0
+position: 10,0
+---
+<<set $rene to true>>
+<<set $morph to true>>
+Zod: "The rope is strong. We have successfully climbed down."
+//voice and change view
+<<if $rene is true>>
+//meet Morph
+<<endif>>
+
+<<if $rene and $morph is true>>
+August: "Oh guys, we are all together and It's so cool! Our trip was unforgetfull and it's finished. Now we can bo back home."
+//catch taxi and END
+<<endif>>
+
+<<if $rene is false>>
+//meet Rene
+<<endif>>
+===
+title: ZodDead
+tags: 
+colorID: 0
+position: 10,0
+---
+//scream of Zod
+"Zod is dead"
+August: "Pity Zod. Anyway I couldn't helped him, so I'll go on my way."
+//scene change
+August: "Omg, the mountain is so high. I can't climb down by myself. Maybe I'll use a rope to safely go down, although I don't know its strength..."
+[[August: (Climb down with a rope)| Dead]]
+[[August: (Climb down without a rope)| ClimbOk]]
+
 ===
 
 title: Dead
@@ -300,7 +359,126 @@ Rene: "I'm so glad you're all right, and where does this dog come from here?"
 <<Show @ girl_laugh, center , 0.3>>
 August: "With one blow ... You laid the wolf with one blow ..."
 <<endif>>
+Rene: "As you know I am Miss Active University.So what's the plan?"
+August: "I don't know"
+Rene: "We can try to find a way out of here or we can try to find others"
+[[(Find a way out of mountains)|WayOut]]
+[[(Find friends)|Friends]]
 
-
-// DON'T DELETE THE "==="
+===
+title: Friends
+tags: 
+colorID: 0
+position: 10,0
+---
+<<Scene @ waterfall2>>
+<<PlayAudio @ Waterfall, 1>>
+Rene: "You know August, at another time, under other circumstances, I would enjoy this beauty around"
+August: "Yeah, it is very beautiful in here"
+Rene: "Take a look at there. Do you see what I see?"
+August: "Where?"
+Rene: "There, behind the waterfall"
+August: "Yes, let's checkout"
+<<Scene @ WaterFall>>
+<<Show @ girl_smile, center>>
+Rene: "It is wonderfull view opens from here"
+{% comment %} Звук мужского крика страх (эхо было бы отлично) {% endcomment %}
+<<Hide @ girl_smile>>
+<<Show @ girl_terrified, center>>
+Rene: "Did you heard that?"
+August: "It sounded like ..."
+Rene: "Zod"
+August: "Hang on Zod!"
+<<Hide @ girl_terrified>>
+<<Scene @ cave>>
+//{% comment %}Звук крыльев (летучая мышь){% endcomment %}
+<<Show @ boy1_angree, right>>
+<<Show @ Bat, left>>
+Zod: "HELP ME!!!"
+August: "Come on. That's just a bat"
+Rene: "And it looks so cute"
+Zod: "It is monster. It will drink my blood"
+August: "Stop that! You look ridiculous"
+<<Hide @ boy1_angree>>
+<<Hide @ girl_terrified>>
+<<Scene @ chimgan3>>
+<<Show @ girl, right>>
+<<Show @ boy1_norm>>
+Zod: "Phew! I could die"
+Rene: "Yeah, sure"
+August: "Hey, look. There are some buildings. We may found help there"
+Rene: "What about Morphius?"
+Zod: "We will return for him"
+August: "Ok"
+<<Hide @boy1_norm>>
+<<Hide @girl>>
+<<Scene @ driveHome>>
+{% comment %}грустная песня{% endcomment %}
+"They couldn't find Morphius. Just three of them returned"
+//ENDGAME
+===
+title: WayOut
+tags: 
+colorID: 0
+position: 10,0
+---
+<<Scene @ road1>>
+{% comment %}Звук машины{% endcomment %}
+August: "Look over there. It's car!"
+<<Show @ girl_laugh, center>>
+Rene: "Run! We need to catch it!"
+{% comment %}Звук бега{% endcomment %}
+{% comment %}Звук женского крика{% endcomment %}
+August: "Rene, what???"
+Rene: "HELP! I am going to fall"
+[[(Catch a car, but lose Rene)|CatchCar]]
+[[(Rescue Rene, but lose car)|RescueRene]]
+===
+title: CatchCar
+tags: 
+colorID: 0
+position: 10,0
+---
+<<Hide @ girl_laugh>>
+<<Scene @ driveHome>>
+{% comment %}грустная песня{% endcomment %}
+"August went home ... alone"
+//ENDGAME
+===
+title: RescueRene
+tags: 
+colorID: 0
+position: 10,0
+---
+<<Hide @ girl_laugh>>
+August:"I need to hand her something"
+[[(Give a Rope)|ReneDeath]]
+[[(Give a Stick)|ReneIsAlive]]
+===
+title: ReneDeath
+tags: 
+colorID: 0
+position: 10,0
+---
+{% comment %}Звук мужского крика NOOO {% endcomment %}
+{% comment %}Звук женского крика{% endcomment %}
+[[(Give a Rope)|ReneDeath]]
+[[(Give a Stick)|ReneIsAlive]]
+<<FadeIn @ 1.0>>
+===
+title: ReneIsAlive
+tags: 
+colorID: 0
+position: 10,0
+---
+<<Show @ girl_smile>>
+August:"Are you ok?"
+Rene:"Thank you very much. You are so brave"
+{% comment %}Звук гудка машины{% endcomment %}
+August:"Look, car is still here"
+<<Hide @ girl_smile>>
+<<Scene @ driveHome>>
+{% comment %}грустная песня{% endcomment %}
+"August went home with Rene. They never knew what happened to their friends"
+//ENDGAME
 ===
