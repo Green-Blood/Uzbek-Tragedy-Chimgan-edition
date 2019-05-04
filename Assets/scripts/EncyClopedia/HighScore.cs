@@ -14,6 +14,7 @@ public class HighScore {
 		this.ID = id;
 
 	}
+
 	// Use this for initialization
 	void Start () {
 		

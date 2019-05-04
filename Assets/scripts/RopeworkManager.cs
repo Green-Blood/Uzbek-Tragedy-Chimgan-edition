@@ -287,11 +287,45 @@ namespace Ropework {
         	}
 		
     	}
-		[YarnCommand("SetFlag")]
-		public void SetFlag()
+		[YarnCommand("InsertFlag")]
+		public void InsertFlag(params string[] parameters)
 		{
 			
+			var par = CleanParams( parameters );
+			var flagname = par[0];
+			var count = par[1];
+			
+			using (dbconn = new SqliteConnection(conn))
+			{
+				dbconn.Open(); //Open connection to the database.
+				dbcmd = dbconn.CreateCommand();
+				sqlQuery = string.Format("INSERT INTO flags (Name, Count) values (\"{0}\",\"{1}\")",flagname,count);// table name
+				dbcmd.CommandText = sqlQuery;
+				dbcmd.ExecuteScalar();
+				dbconn.Close();
+				Debug.Log("Kaka");
+			}
 		}
+		[YarnCommand("DeleteFlag")]
+		public void DeleteFlag(params string[] parameters)
+		{
+			
+			var par = CleanParams( parameters );
+			var flagname = par[0];
+			
+			
+			using (dbconn = new SqliteConnection(conn))
+			{
+				dbconn.Open(); //Open connection to the database.
+				dbcmd = dbconn.CreateCommand();
+				sqlQuery = string.Format("Delete from flags where name =\"{0}\"",flagname);// table name
+				dbcmd.CommandText = sqlQuery;
+				dbcmd.ExecuteScalar();
+				dbconn.Close();
+				Debug.Log("Paka");
+			}
+		}
+		
 		//End of dbcommands
 		[YarnCommand("Show")]
 		public Image SetSprite(params string[] parameters) {
