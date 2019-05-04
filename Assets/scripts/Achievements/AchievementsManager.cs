@@ -48,7 +48,7 @@ public class AchievementsManager : MonoBehaviour {
 				{
 					while(reader.Read())
 					{
-						achievements.Add(new Achievements(reader.GetString(1), reader.GetInt32(2), reader.GetString(3), reader.GetInt32(3) ));	
+						achievements.Add(new Achievements(reader.GetString(1), reader.GetInt32(2), reader.GetString(3), reader.GetInt32(4) ));	
 					}
 					dbConnection.Close();
 					reader.Close();
@@ -88,7 +88,7 @@ public class AchievementsManager : MonoBehaviour {
 		{
 			GameObject tmpObject = Instantiate(scorePrefab);
 			Achievements tmpScore = achievements[i];
-			tmpObject.GetComponent<AchievementsScript>().SetAchievement(tmpScore.AchieveName, tmpScore.Cost.ToString(),  tmpScore.Info, tmpScore.Achieved.ToString() );
+			tmpObject.GetComponent<AchievementsScript>().SetAchievement(tmpScore.AchieveName, tmpScore.Cost.ToString(), tmpScore.Info, tmpScore.Achieved.ToString() );
 			tmpObject.transform.SetParent(scoreParent);
 			//tmpObject.GetComponent<RectTransform().localScale = new Vector3(1,1,1);
 		}
