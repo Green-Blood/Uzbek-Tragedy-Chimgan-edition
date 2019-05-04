@@ -7,13 +7,15 @@ position: 0,0
 
 // sets background image to sprite called "bg_office"
 <<Scene @ bg_chimgan1>>
-
+//Functions (InsertFlag, UpdateFlag, DeleteFlag)
 
 
 // WRITE YOUR STORY HERE!
 
 "All names and events in the game are fictional, any coincidence with real people and events is pure coincidence. "
 "This happened to my best friend, when we were studying in our INHA University in Tashkent"
+
+
 "Hello, I will tell you one story, about one quite unusual person."
 "It all started like this"
 <<Act @ Morphius, boy2, right, 0.40, blue>>
