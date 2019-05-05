@@ -125,6 +125,7 @@ August: "Before going on a trip I captured an encyclopedia of medicinal herbs"
 "In addition to the official name, the popular names of the plant are also known - cut-grass, cutter, serporez, chyhotochnaya grass, porridge, whitehead, tenacious grass, guljavitsa, krovi. Most of these names are very eloquent and indicates that the plant was widely used to treat wounds For medicinal purposes, not only the common yarrow is used, but also other types of yarrow - Asian and bristly. "
 August: "Ha!, So I can use it to heal my leg a little!"
 <<set $find to true>>
+<<UpdateFlag @ 1, find>>
 "Tearing off some leaves from the yarrow, I treated my wound and it became much easier for me"
 <<Hide @ astragalus>>
 [[Animal]]
@@ -149,6 +150,7 @@ August: "I must find a way out of here and quickly."
 <<Scene @ backanimal>>
 August: "What? I hear something?"
 "From under the leaves shows a wolf"
+
 <<Show @ wolf, center , 0.3>>
 <<PlayAudio @ Leaves, 1>>
 August: WHAT? WOLF IN THIS MOUNTAINS???
@@ -164,7 +166,8 @@ tags:
 colorID: 0
 position: 10,0
 ---
-<<UpdateFlag @ 1, sum>>
+<<UpdateFlag @ 1, Animal>>
+
 August: Run,run,run I must run.
 <<if $find is true>>
 [[Cave]]
@@ -225,6 +228,7 @@ position: 10,0
 <<Hide @ boy1_smile>>
 <<Show @ boy1_smile>>
 Zod: "You saved my life. Thank you my friend."
+<<UpdateFlag @ 2, Zod_Earthquake>>
 August: "You are welcome! I know I'm a good person, ahahah"
 August: "We need to find a way to get out from this place. The mountain is so high..."
 Zod: "Oh yeah, let's climb down"
@@ -245,6 +249,8 @@ position: 10,0
 <<Scene @ chimgan5>>
 <<StopAudio @ back1>>
 Zod: "The rope is strong. We have successfully climbed down."
+<<UpdateAchievements @ 3>>
+<<UpdateFlag @ 2, Zod_Earthquake>>
 August: "Yeah..Zod, have you seen Morphious or Rene?"
 Zod: "When bus crashed, I lost consciousness. When I opened my eyes, I saw Rene running away but rarely did I scream to stop her. I thought that you and Morphious are dead. I hid in cave because I met a bear on my the way."
 August: "Let's find Rene. Maybe she is somewhere here."
@@ -307,6 +313,7 @@ position: 10,0
 <<Scene @ chimgan6>>
 August: "Pity Zod...I will come back to save you. Wait for me!"
 <<Scene @ chimgan5>>
+<<UpdateFlag @ 1, Zod_Earthquake>>
 August: "Omg, the mountain is so high. I can't climb down by myself. Maybe I'll use a rope to safely go down, although I don't know its strength..."
 [[August: (Climb down with a rope)| Dead]]
 [[August: (Climb down without a rope)| GoOn]]
@@ -319,6 +326,7 @@ colorID: 0
 position: 10,0
 ---
 "Rope wasn't reliable, it tore off. Our hero is dead."
+<<UpdateAchievements @ 2>>
 //END
 ===
 
@@ -345,6 +353,7 @@ position: 10,0
 <<Hide @ РихтерСолянка>>
 <<Show @ girl_smile, center, 0.3>>
 Rene: "August!"
+<<UpdateFlag @ 2, August_CavePlant>>
 August: "Rene! So much glad seeing you alive. How are you? Where did you run away after the crash?"
 Rene: "I was seeking out help but suddenly I encountered with bear. I was terrified and run away."
 August: "There were so much adventures with us. You see, Zod in danger. He is inside the cave, so we need to help him to get out!"
@@ -380,6 +389,7 @@ position: 10,0
 ---
 <<Hide @ РихтерСолянка>>
 August: "I'm afraid of being poisoned, better I will continue my way."
+<<UpdateFlag @ 1, August_CavePlant>>
 <<Scene @ chimgan8>>
 "While I was trying to find for a help and walking downhill, I realized one thing..."
 <<Fade @ chimgan8, #FFFFFF, -1, 0.0, 1.0>>
@@ -396,7 +406,8 @@ colorID: 0
 position: 10,0
 ---
 August: "I need to hide somewhere"
-<<UpdateFlag @ 2, sum>>
+
+<<UpdateFlag @ 2, Animal>>
 <<if $find is false>>
 "I still have problems with my legs. So, i don't think that INHA can run far."
 <<endif>>
@@ -444,6 +455,7 @@ position: 10,0
 ---
 <<Scene @ chimgan4>>
 <<Show @ boy2>>
+<<UpdateFlag @ 2, Morphius_Save>>
 August: "Are you alive? How are you?"
 Morphious: "I feel bad. But thank you for help. Without you I would already die."
 "After horrible situation, we go on our trip. We walked long long way. And all of sudden..."
@@ -458,6 +470,7 @@ Morphious: "Bear! Bear!"
 August: "Damn it! Common Morph, run away!"
 <<Hide @ bear>>
 "We both run away, although Morph was slower than me. I run back to look for Morph, he was lying on the grass, I put his arm on my shoulder so that he could leant on me."
+<<UpdateAchievements @ 5>>
 "Hardly did we avoid the bear. And I decided to go home and search for other guys later."
 //ENDGAME
 ===
@@ -468,6 +481,7 @@ colorID: 0
 position: 10,0
 ---
 "I stood on the edge of the river trying to pass the stick "
+<<UpdateFlag @ 1, Morphius_Save>>
 Morphious: "Help me, help me!"
 August: "Hold tight the stick Morph! I'm going to pull you out."
 <<PlayAudio @ scream>>
@@ -504,7 +518,7 @@ colorID: 0
 position: 10,0
 ---
 "I still have some problems with my legs, so I can't run too far"
-<<UpdateFlag @ 3, sum>>
+<<UpdateFlag @ 3, Animal>>
 "So, the only choice I have is to fight with him!"
 "I got ready, gathered all my will into a fist."
 August: "I am not hearing the howl of other wolves, it means there is no flock here, it means he is alone, which, incidentally, happens very rarely"
@@ -558,6 +572,7 @@ position: 10,0
 <<Scene @ waterfall2>>
 <<PlayAudio @ Waterfall, 1>>
 Rene: "You know August, at another time, under other circumstances, I would enjoy this beauty around"
+<<UpdateFlag @ 1, Rene_WayOutFriends>>
 August: "Yeah, it is very beautiful in here"
 Rene: "Take a look at there. Do you see what I see?"
 August: "Where?"
@@ -600,6 +615,7 @@ Rene: "Yeah, sure"
 August: "Hey, look. There are some buildings. We may found help there"
 Rene: "What about Morphius?"
 Zod: "We will return for him"
+<<UpdateAchievements @ 4>>
 August: "Ok"
 <<Hide @ boy1_norm>>
 <<Hide @ girl>>
@@ -619,6 +635,7 @@ position: 10,0
 <<Show @ girl, center, 0.3>>
 //{% comment %}Звук машины{% endcomment %}
 <<PlayAudio @ CarDriving>>
+<<UpdateFlag @ 2, Rene_WayOutFriends>>
 August: "Look over there. It's car!"
 Rene: "Run! We need to catch it!"
 <<Hide @ girl>>
@@ -642,6 +659,7 @@ position: 10,0
 <<Scene @ driveHome>>
 <<PlayAudio @ EndGame>>
 "August went home ... alone"
+<<UpdateFlag @ 2, Rene_CarOrRene>>
 //ENDGAME
 ===
 title: RescueRene
@@ -651,6 +669,7 @@ position: 10,0
 ---
 <<Hide @ girl_laugh>>
 August:"I need to hand her something"
+<<UpdateFlag @ 1, Rene_CarOrRene>>
 [[(Give a Rope)|ReneDeath]]
 [[(Give a Stick)|ReneIsAlive]]
 ===
@@ -661,6 +680,7 @@ position: 10,0
 ---
 <<PlayAudio @ FemaleScream>>
 "I couldn't save her life...the rope tore off."
+<<UpdateFlag @ 1, Rene_Save>>
 <<FadeIn @ 1.0>>
 ===
 title: ReneIsAlive
@@ -671,6 +691,7 @@ position: 10,0
 <<Show @ girl_smile, center, 0.3>>
 August:"Are you ok?"
 Rene:"Thank you very much. You are so brave"
+<<UpdateFlag @ 2, Rene_Save>>
 //{% comment %}Звук гудка машины{% endcomment %}
 August:"Look, car is still here"
 <<Hide @ girl_smile>>

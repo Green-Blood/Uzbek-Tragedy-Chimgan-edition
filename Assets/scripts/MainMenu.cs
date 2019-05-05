@@ -6,12 +6,17 @@ public class MainMenu : MonoBehaviour
 {
     public string Playgamelevel;
     public string Encyclopedia;
+    public string Achievements;
     public string goMainMenu;
     public void PlayGame()
     {
         SceneManager.LoadScene(Playgamelevel);
     }
-    public void gotoMainmenu()
+    public void gotoAchievements()
+    {
+        SceneManager.LoadScene(Achievements);
+    }
+    public void gotoMainMenu()
     {
         SceneManager.LoadScene(goMainMenu);
     }

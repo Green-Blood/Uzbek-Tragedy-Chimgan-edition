@@ -42,7 +42,7 @@ public class AchievementsManager : MonoBehaviour {
 			dbConnection.Open();
 			using(IDbCommand dbCmd = dbConnection.CreateCommand())
 			{
-				string sqlQuery = "SELECT * FROM achievements";
+				string sqlQuery = "SELECT * FROM achievements where achieved = 1";
 				dbCmd.CommandText = sqlQuery;
 				using(IDataReader reader = dbCmd.ExecuteReader())
 				{

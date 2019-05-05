@@ -134,7 +134,7 @@ namespace Ropework {
 			{
 			dbconn.Open(); //Open connection to the database.
 				dbcmd = dbconn.CreateCommand();
-				sqlQuery = string.Format("INsert or replace into flags (F_ID,name,count) values((select F_ID from flags where name = 'sum'), 'sum', 0)");// table name
+				sqlQuery = string.Format("Insert or replace into flags (F_ID,name,count) values((select F_ID from flags where name = 'sum'), 'sum', 0)");// table name
 				dbcmd.CommandText = sqlQuery;
 				dbcmd.ExecuteScalar();
 			dbconn.Close();
@@ -150,18 +150,7 @@ namespace Ropework {
 			}
 		}
 
-		private void insertvalue(int id, string name)
-		{
-			using (dbconn = new SqliteConnection(conn))
-			{
-				dbconn.Open(); //Open connection to the database.
-				dbcmd = dbconn.CreateCommand();
-				sqlQuery = string.Format("INSERT INTO Characters (ID, Name) values (\"{0}\",\"{1}\")",id,name);// table name
-				dbcmd.CommandText = sqlQuery;
-				dbcmd.ExecuteScalar();
-				dbconn.Close();
-			}
-		}
+		
 		
 		private void deletevalue(int id)
 		{
@@ -255,9 +244,42 @@ namespace Ropework {
 				dbcmd.CommandText = sqlQuery;			
 				dbcmd.ExecuteScalar();
 				dbconn.Close();
-			}
-			
+			}	
 		}
+		[YarnCommand("UpdateAchievements")]
+		public void UpdateAchievement(params string[] parameters)
+		{
+			var par = CleanParams( parameters );
+			var id = par[0];
+			
+			
+			using (dbconn = new SqliteConnection(conn))
+			{
+				dbconn.Open(); //Open connection to the database.
+				dbcmd = dbconn.CreateCommand();
+				sqlQuery = string.Format("UPDATE achievements SET achieved = 1 WHERE A_ID = \"{0}\"",id  );// table name
+				dbcmd.CommandText = sqlQuery;			
+				dbcmd.ExecuteScalar();
+				dbconn.Close();
+			}	
+		}
+		[YarnCommand("InsertFlag")]
+		public void InsertValue(params string[] parameters)
+		{
+			var par = CleanParams( parameters );
+			var flagname = par[0];
+			var count = par[1];
+			using (dbconn = new SqliteConnection(conn))
+			{
+				dbconn.Open(); //Open connection to the database.
+				dbcmd = dbconn.CreateCommand();
+				sqlQuery = string.Format("INSERT INTO flags (Name,count) values (\"{0}\",\"{1}\")",flagname, count);// table name
+				dbcmd.CommandText = sqlQuery;
+				dbcmd.ExecuteScalar();
+				dbconn.Close();
+			}
+		}
+			
 		[YarnCommand("CheckFlag")]
 		public int checkFlag(params string[] parameters)
     	{
@@ -275,8 +297,7 @@ namespace Ropework {
 				{
 					int count = reader.GetInt32(0);
 					Debug.Log("Hello: " + count);
-				}
-				
+				}	
 				reader.Close();
 				reader = null;
 				dbcmd.Dispose();
@@ -285,7 +306,6 @@ namespace Ropework {
 				dbconn = null;
 				return 2;
         	}
-		
     	}
 		[YarnCommand("SetFlag")]
 		public void SetFlag()
