@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/scenes/Encyclopedia.unity
     guid: 95fff97c5046f984b82c6111e5e8879f
+  - enabled: 1
+    path: Assets/scenes/Achievements.unity
+    guid: 027bd4fe5c2db61448e58bccac15f6f0
   m_configObjects: {}
