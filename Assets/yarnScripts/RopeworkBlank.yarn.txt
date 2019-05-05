@@ -15,7 +15,6 @@ position: 0,0
 "All names and events in the game are fictional, any coincidence with real people and events is pure coincidence. "
 "This happened to my best friend, when we were studying in our INHA University in Tashkent"
 
-
 "Hello, I will tell you one story, about one quite unusual person."
 "It all started like this"
 <<Act @ Morphius, boy2, right, 0.40, blue>>
@@ -97,9 +96,7 @@ position: 10,0
 ---
 <<PlayAudio @ back1, 0.4, loop>>
 <<Scene @ chimgan3>>
-"."
 <<Scene @ chimgan2>>
-"."
 <<Scene @ chimgan6>>
 "Hmm, after looking around, I saw some plant. Can it suit me?"
 <<Scene @ chimgan5>>
@@ -151,11 +148,9 @@ position: 10,0
 August: "I must find a way out of here and quickly."
 <<Scene @ backanimal>>
 August: "What? I hear something?"
-{% comment %} Тут крч нагнетающая музыка {% endcomment %}
 "From under the leaves shows a wolf"
 <<Show @ wolf, center , 0.3>>
 <<PlayAudio @ Leaves, 1>>
-{% comment %} Звук шуршания листьев {% endcomment %}
 August: WHAT? WOLF IN THIS MOUNTAINS???
 <<PlayAudio @ Leaves2, 1>>
 August: I need to do something quickly.
@@ -181,9 +176,9 @@ August: "Agh... agh..."
 "intermittent breathing"
 <<PlayAudio @ BodyFALL, 1>>
 
-<<Shake @ wolf>>
+<<Shake @ wolf, 0.5>>
 <<PlayAudio @ Death, 1>>
-//{% comment %} Звуки ора, мяса и кучи картошек! {% endcomment %}
+<<PlayAudio @ scream>>
 [[Dead]]
 <<endif>>
 ===
@@ -196,7 +191,6 @@ position: 10,0
 <<Hide @ wolf>>
 "I ran, long very long"
 “The wolf followed me right up to the very end. I thought I would die. The wolf was very fast, but I was quicker”
-//{% comment %} Звук тяжелого дыхания {% endcomment %}
 <<PlayAudio @ HeavyBreath, 1>>
 <<Scene @ cave>>
 "At the very last moment I found a cave and hid there"
@@ -210,64 +204,112 @@ Zod: How glad I am that I could find you
 <<Show @ boy1_smile, center , 0.3>>
 August: Zod, my friend ...
 "Tears came to my eyes and I almost burst into tears of happiness, especially after I could barely save myself from a wolf who came from no one knows where"
-//voice
-"OMG, Earthquake has happend!"
+<<PlayAudio @ quake, 1>>
+"Oh my God, Earthquake has happend!"
+<<PlayAudio @ scream, 1>>
+<<Hide @ boy1_smile>>
 "I hear Zod screaming"
 //voice
 Zod: "Help! Help!"
+August: "Oh my goodness. Huge stone fell down and closed the cave. I must remove that heavy stone but I might fall down. I can help him only by putting my life in danger. "
 [[August: (Help)|HelpZod]]
 [[August: (Don't help)|ZodDead]]
 ===
+
 title: HelpZod
 tags: 
 colorID: 0
 position: 10,0
 ---
+<<Scene @ chimgan6>>
+<<Hide @ boy1_smile>>
+<<Show @ boy1_smile>>
 Zod: "You saved my life. Thank you my friend."
 August: "You are welcome! I know I'm a good person, ahahah"
 August: "We need to find a way to get out from this place. The mountain is so high..."
 Zod: "Oh yeah, let's climb down"
 August: "Ouch, I'm hurted. I sprained my hand."
+<<Hide @ boy1_smile>>
+<<Show @ boy1_norm>>
 Zod: "Poor little soul. I feel sorry for that... I have an idea! Here is a rope we can use to climb down the mountain. But I'm not sure whether it is reliable or not"
-[[August: (Climb down with a rope)| ClimbOk]]
-[[August: (Climb down without a rope)| Dead]]
-
-=== 
+August: "Mmm..."
+[[August: (Climb down with a rope)|ClimbOk]]
+[[August: (Climb down without a rope)|Dead]]
+===
 
 title: ClimbOk
 tags: 
 colorID: 0
 position: 10,0
 ---
-<<set $rene to true>>
-<<set $morph to true>>
+<<Scene @ chimgan5>>
+<<StopAudio @ back1>>
 Zod: "The rope is strong. We have successfully climbed down."
-//voice and change view
-<<if $rene is true>>
-//meet Morph
-<<endif>>
+August: "Yeah..Zod, have you seen Morphious or Rene?"
+Zod: "When bus crashed, I lost consciousness. When I opened my eyes, I saw Rene running away but rarely did I scream to stop her. I thought that you and Morphious are dead. I hid in cave because I met a bear on my the way."
+August: "Let's find Rene. Maybe she is somewhere here."
+<<Hide @ boy1_norm>>
 
-<<if $rene and $morph is true>>
-August: "Oh guys, we are all together and It's so cool! Our trip was unforgetfull and it's finished. Now we can bo back home."
-//catch taxi and END
-<<endif>>
-
-<<if $rene is false>>
-//meet Rene
-<<endif>>
+<<Scene @ nightfall>>
+<<PlayAudio @ night2, 0.5, loop>>
+"It is getting dark and two friends hit the road on the quest of searching Rene"
+"All of sudden, some voices were heard"
+<<Show @ girl_smile, center, 0.3>>
+Rene: "Guys!"
+<<Show @ boy1_laugh, left>>
+August: "Rene! So much glad seeing you alive."
+<<Hide @ boy1_laugh>>
+<<Show @ boy1_smile, left>>
+Zod: "How are you? Where did you run away after the crash?"
+Rene: "I was seeking out help but suddenly I encountered with bear. I was terrified and run away."
+August: "There were so much adventures with us. I wonder where is Morphious. Let's find him"
+<<Scene @midnight>>
+"The night has come. It was so difficult to walk in the dark, so they decided to stay in the cave till sun goes up."
+<<StopAudio @ night2>>
+<<Hide @ girl_smile>>
+<<Hide @ boy1_smile>>
+"Night was long and scaring. But they waited this night"
+<<Scene @ chimgan2>>
+<<PlayAudio @ morning_bird>>
+"Finally, sun rose up"
+August: "Feel hungry. Is there any food? I want to eat"
+Zod: "Me too."
+Rene: "I see there tree, maybe it has fruits. Let's check it"
+<<Scene @ chimgan7>>
+<<StopAudio @ morning_bird>>
+<<Show @ pomegrante, right, bottom>>
+August: "Wow, it is pomegranate, my favourite fruit! I'll pick up as much as I can."
+"Once I pick up them, I shared with my friends"
+<<Hide @ pomegrante>>
+<<Show @ girl_laugh, center, 0.3>>
+<<Show @ boy1_smile, left>>
+Rene: "It's so tasty and freshy, I like it so much. Now, I recognise why Uzbekistan is told to be a country with fruitfull land"
+Zod: "Sure for that."
+<<Scene @ chimgan8>>
+<<Hide @ girl_laugh>>
+<<Hide @ boy1_smile>>
+"Having eaten fruits, we went on our trip. So lucky we are that, on our way, we met Morphious."
+<<Show @ boy2, right>>
+Morphious: "Hi guys! You are all alive, I'm so much glad to see you"
+<<Hide @ boy2>>
+<<Show @ boy2_happy, right>>
+<<Show @ girl_laugh, center, 0.3>>
+<<Show @ boy1_laugh, left>>
+"Finally, we are 4 friends met each other. On the way to home we all were sharing with gotten experience and rrepeating how extremely dangerous and unforgetfull our trip was. "
+//END
 ===
+
 title: ZodDead
 tags: 
 colorID: 0
 position: 10,0
 ---
-//scream of Zod
-"Zod is dead"
-August: "Pity Zod. Anyway I couldn't helped him, so I'll go on my way."
-//scene change
+<<Scene @ chimgan6>>
+August: "Pity Zod...I will come back to save you. Wait for me!"
+<<Scene @ chimgan5>>
 August: "Omg, the mountain is so high. I can't climb down by myself. Maybe I'll use a rope to safely go down, although I don't know its strength..."
 [[August: (Climb down with a rope)| Dead]]
-[[August: (Climb down without a rope)| ClimbOk]]
+[[August: (Climb down without a rope)| GoOn]]
 
 ===
 
@@ -276,9 +318,78 @@ tags:
 colorID: 0
 position: 10,0
 ---
-"You are Dead"
+"Rope wasn't reliable, it tore off. Our hero is dead."
+//END
 ===
 
+title: GoOn
+tags: 
+colorID: 0
+position: 10,0
+---
+<<Scene @ chimgan3>>
+August: "I don't know where to go. Zod is in the cave. I need to find other for help"
+"I ran as fast as possible and all of sudden I fell down. I see how much I was bleeding. Couldn't even stand up, I looked around hoping for help."
+<<Show @ РихтерСолянка, right, bottom>>
+"I saw some plant that was very familiar to me. Thinking about plant which can help me stop blood I hardly creeped to it. Before making a choice, I wonder whether it is really that one which I know or it is something different, harmfull for me...?"
+[[August: (Pick a plant)| GoOn1]]
+[[August: (Don't pick)| Dead1]]
+
+===
+
+title: GoOn1
+tags: 
+colorID: 0
+position: 10,0
+---
+<<Hide @ РихтерСолянка>>
+<<Show @ girl_smile, center, 0.3>>
+Rene: "August!"
+August: "Rene! So much glad seeing you alive. How are you? Where did you run away after the crash?"
+Rene: "I was seeking out help but suddenly I encountered with bear. I was terrified and run away."
+August: "There were so much adventures with us. You see, Zod in danger. He is inside the cave, so we need to help him to get out!"
+<<Hide @ girl_smile>>
+<<Show @ girl_cry, center, 0.3>>
+Rene: "What happened to him?"
+August: "I will tell you later. We don't have much time now."
+<<Scene @ chimgan6>>
+<<Hide @ girl_cry>>
+"I went back to save my friend, as I felt guilty and felt really bad. We climbed up that mountain. Finally, We reached that cave."
+"The cave was closed by stones and it was really hard to remove them. But we did it."
+<<Scene @ cave>>
+"We entered into the cave and called out loud Zod."
+"No one answered"
+"We searched for him everywhere but there was no one."
+"Zod is dead..."
+<<Show @ girl_terrified, center, 0.3>>
+Rene: "No, no...it's impossible. We need to find help."
+August: "Wait here, I will come back"
+<<Hide @ girl_terrified>>
+<<Scene @ chimgan6>>
+"I climbed down in rush in quest for someone's help and fell down again."
+"I lost my consciousness"
+<<Show @ black>>
+"I though I could find my friend and could help them. But I was mistaken."
+//END
+===
+
+title: Dead1
+tags: 
+colorID: 0
+position: 10,0
+---
+<<Hide @ РихтерСолянка>>
+August: "I'm afraid of being poisoned, better I will continue my way."
+<<Scene @ chimgan8>>
+"While I was trying to find for a help and walking downhill, I realized one thing..."
+<<Fade @ chimgan8, #FFFFFF, -1, 0.0, 1.0>>
+"I lost my consciousness"
+<<Show @ black>>
+"I though I could find my friend and could help them. But I was mistaken."
+//END
+===
+
+//Morphious
 title: Hide
 tags: 
 colorID: 0
@@ -287,31 +398,106 @@ position: 10,0
 August: "I need to hide somewhere"
 <<UpdateFlag @ 2, sum>>
 <<if $find is false>>
-"I still have problems with my legs. So, i don't think that i can run far."
+"I still have problems with my legs. So, i don't think that INHA can run far."
 <<endif>>
-
 <<PlayAudio @ Wolf, 1>>
 //{% comment %} Звуки волка {% endcomment %}
-<<Shake @ wolf>>
-"Stop, i see there a waterfall, maybe i can hide behind the falling water"
+<<Shake @ wolf, 0.4>>
+"Stop, I see there a waterfall, maybe I can hide behind the falling water"
 <<Hide @ wolf>>
 <<Scene @ WaterFall>>
 <<PlayAudio @ Waterfall, 1>>
-//{% comment %} Звуки водопада {% endcomment %}
+<<StopAudio @ Wolf>>
 "Whoof, here I'am safe"
 "I hope, he can't find me here"
 <<Scene @ WaterFall1>>
-<<Show @ boy2_confused, center , 0.3>>
+<<Show @ boy2_confused, center, 0.3>>
 
 Morphius: August is this you?
 August: Morphius, my dear friend
 Morphius: I thought you are dead. I'm so happy that someone is alive
 <<Hide @ boy2_confused>>
-<<Show @ boy2_confused, center , 0.3>>
+<<Show @ boy2_happy, center, 0.3>>
 August: Me too, How you got there?
 Morphius: After the crash I looked for a water, and got here.
+August: "Guess, you haven't seen other guys. We should find them, so let's go."
+"Me and Morphious went in the quest for finding Rene and Zod. There was a river that had to cross. To our happiness, we saw a bridge to cross the river."
+<<Scene @ bridge>>
+<<Hide @ boy2_happy>>
+<<Show @ boy2_confused, center, 0.3>>
+August: "Follow me, there is a bridge."
+Morphious: "Alright. Hope, it is reliable..."
+"Firstly, I walked through the bridge to check for reliableness. Than I called Morphious to cross it."
+Morphious: "I'm crossing...well, the bridge made from rope doesn't seem to be strong enough"
+<<Hide @ boy2_confused>>
+<<PlayAudio @ scream>>
+August: "Morphious! Oh my God... Oh my poor friend."
+"In rush I was searching for somthing to help me to save Morph's live. I looked around and found a long thin stick. Coming back to the river I remmembered about the rope I had in my bag. So I took..."
+[[August: (Rope to save my friend)| MorphSafe]]
+[[August: (Stick to save my friend)| MorphDead]]
 ===
 
+title: MorphSafe
+tags: 
+colorID: 0
+position: 10,0
+---
+<<Scene @ chimgan4>>
+<<Show @ boy2>>
+August: "Are you alive? How are you?"
+Morphious: "I feel bad. But thank you for help. Without you I would already die."
+"After horrible situation, we go on our trip. We walked long long way. And all of sudden..."
+<<Scene @ forest_by_andanguyen-db44iwk>>
+<<Hide boy2>>
+<<Show @ boy2_angree>>
+Morphious: "Bear! Bear!"
+<<Show @ bear, left, 0.5>>
+<<Shake @ bear, 0.5>>
+<<Hide @ boy2_angree>>
+<<Hide @ boy2>>
+August: "Damn it! Common Morph, run away!"
+<<Hide @ bear>>
+"We both run away, although Morph was slower than me. I run back to look for Morph, he was lying on the grass, I put his arm on my shoulder so that he could leant on me."
+"Hardly did we avoid the bear. And I decided to go home and search for other guys later."
+//ENDGAME
+===
+
+title: MorphDead
+tags: 
+colorID: 0
+position: 10,0
+---
+"I stood on the edge of the river trying to pass the stick "
+Morphious: "Help me, help me!"
+August: "Hold tight the stick Morph! I'm going to pull you out."
+<<PlayAudio @ scream>>
+Morphious: "Aaaaaa...I am carried away by the river"
+<<StopAudio @ back1>>
+"The river flows fast, I regret that I chose the stick. Now I'm late..."
+<<PlayAudio @ EndGame>>
+"Being very dissapointed, I hit the road to search other friends."
+<<Scene @ forest_by_andanguyen-db44iwk>>
+"Ater some time I encountered with Rene"
+<<Show @ girl_terrified, left, 0.3>>
+Rene: "August, are you alive ???"
+<<Hide @ girl_terrified>>
+<<Show @ girl_laugh, left, 0.3>>
+Rene: "I'm so glad you're all right"
+August: "I was with Morphious, very bad thing happended. While we crossing the bridge he fell down and the river carried away him."
+<<Hide @ girl_laugh>>
+<<Show @ girl_cry, left, 0.3>>
+Rene: "Poor Morph...I will miss him"
+August: "So will I...I tried to save him but I was late"
+<<Hide @ girl_cry>>
+<<Show @ girl, left>>
+Rene: "We can try to find a way out of here or we can try to find others"
+<<StopAudio @ back1>>
+[[(Find a way out of mountains)|WayOut]]
+[[(Find friends)|Friends]]
+===
+
+
+//Rene
 title: Fight
 tags: 
 colorID: 0
@@ -328,9 +514,8 @@ August: "Let's go!"
 <<PlayAudio @ backwolf, 0.5, loop>>
 "Two outstanding beings clashed in the battle."
 "August ran and kicked in the face of the wolf"
-"The wolf could not dodge, flew back, but immediately got up on its four paws and attacked the man who dared to kick the alpha male!"
+"The wol  f could not dodge, flew back, but immediately got up on its four paws and attacked the man who dared to kick the alpha male!"
 "This wolf was called Alfach Said"
-{% comment %} Выдающаяся музыка, вдохновляющая, пафосная {% endcomment %}
 "He was one of those who alone could resist the five wolves!"
 "Some little man can't stop me!"
 “I’m Said I’m Alfa, I’ll definitely win over him”
@@ -343,18 +528,15 @@ August: "Let's go!"
 [[Dead]]
 <<else>>
 "Wolf jumped"
-<<Shake @ wolf>>
-{% comment %} Звук прыжка {% endcomment %}
+<<Shake @ wolf, 0.5>>
 "He jumped so fast that the whistling sound of the wind beat in his ears."
 "All his strength was directed to bite the neck of Man"
 "A man will not be able to dodge, from my great technique 'neck bite'!"
-<<Shake @ wolf>>
+<<Shake @ wolf, 0.5>>
 <<PlayAudio @ Slap, 1>>
-{% comment %} Звук шлепка {% endcomment %}
 <<StopAudio @ backwolf>>
 <<Hide @ wolf>>
 <<PlayAudio @ Whining, 1>>
-{% comment %} Скулеж волка {% endcomment %}
 <<Show @ girl_smile, center , 0.3>>
 Rene: "August, are you alive ???"
 Rene: "I'm so glad you're all right, and where does this dog come from here?"
@@ -366,8 +548,8 @@ August: "I don't know"
 Rene: "We can try to find a way out of here or we can try to find others"
 [[(Find a way out of mountains)|WayOut]]
 [[(Find friends)|Friends]]
-
 ===
+
 title: Friends
 tags: 
 colorID: 0
@@ -382,68 +564,83 @@ August: "Where?"
 Rene: "There, behind the waterfall"
 August: "Yes, let's checkout"
 <<Scene @ WaterFall>>
-<<Show @ girl_smile, center>>
+<<Show @ girl_smile, center, 0.3>>
 Rene: "It is wonderfull view opens from here"
-{% comment %} Звук мужского крика страх (эхо было бы отлично) {% endcomment %}
+//{% comment %} Звук мужского крика страх (эхо было бы отлично) {% endcomment %}
+<<PlayAudio @ scream, 1>>
 <<Hide @ girl_smile>>
-<<Show @ girl_terrified, center>>
+<<Show @ girl_terrified, center, 0.3>>
 Rene: "Did you heard that?"
 August: "It sounded like ..."
 Rene: "Zod"
 August: "Hang on Zod!"
+<<StopAudio @ Waterfall>>
 <<Hide @ girl_terrified>>
 <<Scene @ cave>>
+<<Hide @ girl_laugh>>
+<<Hide @ girl_smile>>
 //{% comment %}Звук крыльев (летучая мышь){% endcomment %}
 <<Show @ boy1_angree, right>>
 <<Show @ Bat, left>>
+<<PlayAudio @ Bats, 1>>
 Zod: "HELP ME!!!"
 August: "Come on. That's just a bat"
 Rene: "And it looks so cute"
 Zod: "It is monster. It will drink my blood"
 August: "Stop that! You look ridiculous"
 <<Hide @ boy1_angree>>
-<<Hide @ girl_terrified>>
+<<StopAudio @ Bats>>
+<<Hide @ Bat>>
+<<PlayAudio @ EndGame>>
 <<Scene @ chimgan3>>
-<<Show @ girl, right>>
-<<Show @ boy1_norm>>
+<<Show @ girl, right, 0.3>>
+<<Show @ boy1_norm, left, 0.3>>
 Zod: "Phew! I could die"
 Rene: "Yeah, sure"
 August: "Hey, look. There are some buildings. We may found help there"
 Rene: "What about Morphius?"
 Zod: "We will return for him"
 August: "Ok"
-<<Hide @boy1_norm>>
-<<Hide @girl>>
+<<Hide @ boy1_norm>>
+<<Hide @ girl>>
 <<Scene @ driveHome>>
-{% comment %}грустная песня{% endcomment %}
 "They couldn't find Morphius. Just three of them returned"
 //ENDGAME
 ===
+
 title: WayOut
 tags: 
 colorID: 0
 position: 10,0
 ---
 <<Scene @ road1>>
-{% comment %}Звук машины{% endcomment %}
+<<Hide @ girl_smile>>
+<<Hide @ girl_laugh>>
+<<Show @ girl, center, 0.3>>
+//{% comment %}Звук машины{% endcomment %}
+<<PlayAudio @ CarDriving>>
 August: "Look over there. It's car!"
-<<Show @ girl_laugh, center>>
 Rene: "Run! We need to catch it!"
-{% comment %}Звук бега{% endcomment %}
-{% comment %}Звук женского крика{% endcomment %}
-August: "Rene, what???"
+<<Hide @ girl>>
+<<PlayAudio @ Running>>
+"We run after the car hoping to stop it. But suddenly"
+<<PlayAudio @ FemaleScream>>
+<<StopAudio @ Running>>
+August: "Rene, what happended???"
 Rene: "HELP! I am going to fall"
 [[(Catch a car, but lose Rene)|CatchCar]]
 [[(Rescue Rene, but lose car)|RescueRene]]
 ===
+
 title: CatchCar
 tags: 
 colorID: 0
 position: 10,0
 ---
 <<Hide @ girl_laugh>>
+<<Hide @ girl_smile>>
 <<Scene @ driveHome>>
-{% comment %}грустная песня{% endcomment %}
+<<PlayAudio @ EndGame>>
 "August went home ... alone"
 //ENDGAME
 ===
@@ -462,10 +659,8 @@ tags:
 colorID: 0
 position: 10,0
 ---
-{% comment %}Звук мужского крика NOOO {% endcomment %}
-{% comment %}Звук женского крика{% endcomment %}
-[[(Give a Rope)|ReneDeath]]
-[[(Give a Stick)|ReneIsAlive]]
+<<PlayAudio @ FemaleScream>>
+"I couldn't save her life...the rope tore off."
 <<FadeIn @ 1.0>>
 ===
 title: ReneIsAlive
@@ -473,14 +668,14 @@ tags:
 colorID: 0
 position: 10,0
 ---
-<<Show @ girl_smile>>
+<<Show @ girl_smile, center, 0.3>>
 August:"Are you ok?"
 Rene:"Thank you very much. You are so brave"
-{% comment %}Звук гудка машины{% endcomment %}
+//{% comment %}Звук гудка машины{% endcomment %}
 August:"Look, car is still here"
 <<Hide @ girl_smile>>
 <<Scene @ driveHome>>
-{% comment %}грустная песня{% endcomment %}
+<<PlayAudio @ EndGame>>
 "August went home with Rene. They never knew what happened to their friends"
 //ENDGAME
 ===
