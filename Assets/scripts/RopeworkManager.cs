@@ -8,7 +8,7 @@ using Yarn.Unity;
 using Mono.Data.Sqlite;
 using System;
 using System.Data;	
-
+using UnityEngine.SceneManagement;
 
 namespace Ropework {
     public class RopeworkManager : MonoBehaviour
@@ -44,8 +44,9 @@ namespace Ropework {
 		private string conn, sqlQuery;
     	IDbConnection dbconn;
     	IDbCommand dbcmd;
+		
 		//end of db variables
-
+		public string goMainMenu;
 
 
 		void Awake () {
@@ -184,6 +185,7 @@ namespace Ropework {
 			
 			bgImage.sprite = FetchAsset<Sprite>(spriteName);
 		}
+		
 
 		// SetActor(actorName,spriteName,positionX,positionY,color)
 		// main function for moving / adjusting characters
