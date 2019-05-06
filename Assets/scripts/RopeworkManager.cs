@@ -134,9 +134,10 @@ namespace Ropework {
 			{
 			dbconn.Open(); //Open connection to the database.
 				dbcmd = dbconn.CreateCommand();
-				sqlQuery = string.Format("Insert or replace into flags (F_ID,name,count) values((select F_ID from flags where name = 'sum'), 'sum', 0)");// table name
+				sqlQuery = string.Format("UPDATE Flags SET Count = REPLACE(0, Name,F_ID)");// table name
 				dbcmd.CommandText = sqlQuery;
 				dbcmd.ExecuteScalar();
+				
 			dbconn.Close();
 			}
 		}
@@ -251,13 +252,16 @@ namespace Ropework {
 		{
 			var par = CleanParams( parameters );
 			var id = par[0];
-			
-			
+			var cost = par[1];
+		
 			using (dbconn = new SqliteConnection(conn))
 			{
 				dbconn.Open(); //Open connection to the database.
 				dbcmd = dbconn.CreateCommand();
-				sqlQuery = string.Format("UPDATE achievements SET achieved = 1 WHERE A_ID = \"{0}\"",id  );// table name
+				sqlQuery = string.Format("UPDATE achievements SET achieved = 1, cost = \"{1}\" WHERE A_ID = \"{0}\"",id, cost);// table name
+				dbcmd.CommandText = sqlQuery;			
+				dbcmd.ExecuteScalar();
+				sqlQuery = string.Format("UPDATE Player SET score = score + \"{0}\" WHERE P_ID = 15",cost  );// table name
 				dbcmd.CommandText = sqlQuery;			
 				dbcmd.ExecuteScalar();
 				dbconn.Close();

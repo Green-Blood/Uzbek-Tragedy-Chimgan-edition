@@ -249,7 +249,7 @@ position: 10,0
 <<Scene @ chimgan5>>
 <<StopAudio @ back1>>
 Zod: "The rope is strong. We have successfully climbed down."
-<<UpdateAchievements @ 3>>
+<<UpdateAchievements @ 3,4>>
 <<UpdateFlag @ 2, Zod_Earthquake>>
 August: "Yeah..Zod, have you seen Morphious or Rene?"
 Zod: "When bus crashed, I lost consciousness. When I opened my eyes, I saw Rene running away but rarely did I scream to stop her. I thought that you and Morphious are dead. I hid in cave because I met a bear on my the way."
@@ -326,7 +326,7 @@ colorID: 0
 position: 10,0
 ---
 "Rope wasn't reliable, it tore off. Our hero is dead."
-<<UpdateAchievements @ 2>>
+<<UpdateAchievements @ 2, 1>>
 //END
 ===
 
@@ -470,7 +470,7 @@ Morphious: "Bear! Bear!"
 August: "Damn it! Common Morph, run away!"
 <<Hide @ bear>>
 "We both run away, although Morph was slower than me. I run back to look for Morph, he was lying on the grass, I put his arm on my shoulder so that he could leant on me."
-<<UpdateAchievements @ 5>>
+<<UpdateAchievements @ 5, 4>>
 "Hardly did we avoid the bear. And I decided to go home and search for other guys later."
 //ENDGAME
 ===
@@ -519,6 +519,7 @@ position: 10,0
 ---
 "I still have some problems with my legs, so I can't run too far"
 <<UpdateFlag @ 3, Animal>>
+<<UpdateAchievements @ 1,5>>
 "So, the only choice I have is to fight with him!"
 "I got ready, gathered all my will into a fist."
 August: "I am not hearing the howl of other wolves, it means there is no flock here, it means he is alone, which, incidentally, happens very rarely"
@@ -615,7 +616,7 @@ Rene: "Yeah, sure"
 August: "Hey, look. There are some buildings. We may found help there"
 Rene: "What about Morphius?"
 Zod: "We will return for him"
-<<UpdateAchievements @ 4>>
+<<UpdateAchievements @ 4, 4>>
 August: "Ok"
 <<Hide @ boy1_norm>>
 <<Hide @ girl>>
