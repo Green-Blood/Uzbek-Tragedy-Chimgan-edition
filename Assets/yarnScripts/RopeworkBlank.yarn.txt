@@ -302,7 +302,8 @@ Morphious: "Hi guys! You are all alive, I'm so much glad to see you"
 <<Show @ girl_laugh, center, 0.3>>
 <<Show @ boy1_laugh, left>>
 "Finally, we are 4 friends met each other. On the way to home we all were sharing with gotten experience and rrepeating how extremely dangerous and unforgetfull our trip was. "
-//END
+<<GameResult @ 7, 1>>
+//END1
 ===
 
 title: ZodDead
@@ -327,7 +328,8 @@ position: 10,0
 ---
 "Rope wasn't reliable, it tore off. Our hero is dead."
 <<UpdateAchievements @ 2, 1>>
-//END
+<<GameResult @ 7, 2>>
+//END8
 ===
 
 title: GoOn
@@ -379,7 +381,8 @@ August: "Wait here, I will come back"
 "I lost my consciousness"
 <<Show @ black>>
 "I though I could find my friend and could help them. But I was mistaken."
-//END
+<<GameResult @ 10, 3>>
+//END2
 ===
 
 title: Dead1
@@ -396,7 +399,8 @@ August: "I'm afraid of being poisoned, better I will continue my way."
 "I lost my consciousness"
 <<Show @ black>>
 "I though I could find my friend and could help them. But I was mistaken."
-//END
+<<GameResult @ 10, 4>>
+//END3
 ===
 
 //Morphious
@@ -472,7 +476,8 @@ August: "Damn it! Common Morph, run away!"
 "We both run away, although Morph was slower than me. I run back to look for Morph, he was lying on the grass, I put his arm on my shoulder so that he could leant on me."
 <<UpdateAchievements @ 5, 4>>
 "Hardly did we avoid the bear. And I decided to go home and search for other guys later."
-//ENDGAME
+<<GameResult @ 2, 5>>
+//ENDGAME4
 ===
 
 title: MorphDead
@@ -622,7 +627,8 @@ August: "Ok"
 <<Hide @ girl>>
 <<Scene @ driveHome>>
 "They couldn't find Morphius. Just three of them returned"
-//ENDGAME
+<<GameResult @ 3, 6>>
+//ENDGAME5
 ===
 
 title: WayOut
@@ -661,7 +667,8 @@ position: 10,0
 <<PlayAudio @ EndGame>>
 "August went home ... alone"
 <<UpdateFlag @ 2, Rene_CarOrRene>>
-//ENDGAME
+<<GameResult @ 5, 7>>
+//ENDGAME6
 ===
 title: RescueRene
 tags: 
@@ -699,5 +706,6 @@ August:"Look, car is still here"
 <<Scene @ driveHome>>
 <<PlayAudio @ EndGame>>
 "August went home with Rene. They never knew what happened to their friends"
-//ENDGAME
+<<GameResult @ 4, 8>>
+//ENDGAME7
 ===

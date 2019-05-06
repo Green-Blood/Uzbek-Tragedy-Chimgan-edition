@@ -137,6 +137,9 @@ namespace Ropework {
 				sqlQuery = string.Format("UPDATE Flags SET Count = REPLACE(0, Name,F_ID)");// table name
 				dbcmd.CommandText = sqlQuery;
 				dbcmd.ExecuteScalar();
+				sqlQuery = string.Format("UPDATE Endings SET Happened = REPLACE(0,E_ID,0)");// table name
+				dbcmd.CommandText = sqlQuery;
+				dbcmd.ExecuteScalar();
 				
 			dbconn.Close();
 			}
@@ -149,10 +152,7 @@ namespace Ropework {
 				// getDDL();
 				dbconn.Close();
 			}
-		}
-
-		
-		
+		}	
 		private void deletevalue(int id)
 		{
 			using (dbconn = new SqliteConnection(conn))
@@ -261,9 +261,32 @@ namespace Ropework {
 				sqlQuery = string.Format("UPDATE achievements SET achieved = 1, cost = \"{1}\" WHERE A_ID = \"{0}\"",id, cost);// table name
 				dbcmd.CommandText = sqlQuery;			
 				dbcmd.ExecuteScalar();
-				sqlQuery = string.Format("UPDATE Player SET score = score + \"{0}\" WHERE P_ID = 15",cost  );// table name
+				sqlQuery = string.Format("UPDATE Player SET score = score + \"{0}\" WHERE P_ID = (SELECT P_ID FROM PLAYER)",cost  );// table name
 				dbcmd.CommandText = sqlQuery;			
 				dbcmd.ExecuteScalar();
+				sqlQuery = string.Format("INSERT INTO Obtains values ( (SELECT P_ID FROM PLAYER) ,\"{0}\" )",id  );// table name
+				dbcmd.CommandText = sqlQuery;			
+				dbcmd.ExecuteScalar();
+				dbconn.Close();
+			}	
+		}
+		[YarnCommand("GameResult")]
+		public void Ending(params string[] parameters)
+		{
+			var par = CleanParams( parameters );
+			var f_id = par[0];
+			var e_id = par[1];
+			using (dbconn = new SqliteConnection(conn))
+			{
+				dbconn.Open(); //Open connection to the database.
+				dbcmd = dbconn.CreateCommand();
+				sqlQuery = string.Format("insert or replace into gameresult values (\"{0}\", \"{1}\", (SELECT SUM(count) as flag_sum from flags))", f_id, e_id);// table name
+				dbcmd.CommandText = sqlQuery;			
+				dbcmd.ExecuteScalar();
+				sqlQuery = string.Format("update Endings set happened = 1 where e_id = \"{0}\"", e_id);// table name
+				dbcmd.CommandText = sqlQuery;			
+				dbcmd.ExecuteScalar();
+				
 				dbconn.Close();
 			}	
 		}
