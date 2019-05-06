@@ -894,7 +894,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1612900670}
-        m_MethodName: gotoMainmenu
+        m_MethodName: gotoMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -988,6 +988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Playgamelevel: GameScene
   Encyclopedia: Encyclopedia
+  Achievements: 
   goMainMenu: Menu
 --- !u!1 &1686341859
 GameObject:

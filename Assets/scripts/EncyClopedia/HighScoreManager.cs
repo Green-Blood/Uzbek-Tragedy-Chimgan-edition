@@ -53,7 +53,27 @@ public class HighScoreManager : MonoBehaviour {
 					dbConnection.Close();
 					reader.Close();
 				}
-
+			}
+		}
+	}
+	private void GetAnimals()
+	{
+		using(IDbConnection dbConnection = new SqliteConnection(conn))
+		{
+			dbConnection.Open();
+			using(IDbCommand dbCmd = dbConnection.CreateCommand())
+			{
+				string sqlQuery = "SELECT * FROM characters INNER JOIN NPC ON id = npc_id";
+				dbCmd.CommandText = sqlQuery;
+				using(IDataReader reader = dbCmd.ExecuteReader())
+				{
+					while(reader.Read())
+					{
+						highscores.Add(new HighScore(reader.GetInt32(0), reader.GetString(1), reader.GetString(3) ));	
+					}
+					dbConnection.Close();
+					reader.Close();
+				}
 			}
 		}
 	}
@@ -84,6 +104,7 @@ public class HighScoreManager : MonoBehaviour {
 	private void ShowScores()
 	{
 		GetPlants();
+		GetAnimals();
 		for(int i = 0; i < highscores.Count; i++)
 		{
 			GameObject tmpObject = Instantiate(scorePrefab);
