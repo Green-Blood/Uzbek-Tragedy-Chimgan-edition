@@ -2,7 +2,7 @@
 ## Database Systems course Term project
 ![GitHub Logo](/Assets/sprites/menu.png)
 
-### Small Visual novel about Uzbekistan and Chimgan tragedy. With 3 different endings. 
+### Small Visual novel about Uzbekistan and Chimgan tragedy with 3 different endings. 
 
 #### Main Menu contains five buttons: START, OPTIONS, ENCYCLOPEDIA, ACHIEVEMENTS, EXIT.
 * START - starts the game itself
